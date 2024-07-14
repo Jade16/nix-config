@@ -1,5 +1,6 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
+
 {
   inputs,
   outputs,
@@ -71,7 +72,7 @@
   # FIXME: Add the rest of your current configuration
 
   # TODO: Set your hostname
-  networking.hostName = "your-hostname";
+  networking.hostName = "jadesnix";
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
