@@ -1,4 +1,7 @@
 # This is just an example, you should generate yours with nixos-generate-config and put it in here.
+# Este é apenas um exemplo, você deve gerar o seu com nixos-generate-config e colocá-lo aqui.
+# COMO GERAR???
+# MUDAR ISSO AQUI, TIRAR O TREM NA NIVIDIA E VER COMO GERAR O NIXOS-GENERATE-CONFIG!!!
 
 { 
 	config,
@@ -6,7 +9,9 @@
 	pkgs,
 	modulesPath,
 	... 
-}: {
+}: 
+
+{
 	imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
