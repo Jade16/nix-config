@@ -111,6 +111,7 @@
 
   # Networking
   networking = {
+    hostName = "nixos";
     networkmanager.enable = true;
   };
 
@@ -214,9 +215,7 @@
   # FIXME: Add the rest of your current configuration
   # FIXE-ME: Adicione o resto da sua configuracao atual
 
-  # TODO: Set your hostname
-  # PENDENCIA: Defina seu hostname
-  #networking.hostName = "jadesnix";
+
 
   
 
