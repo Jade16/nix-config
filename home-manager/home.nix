@@ -1,5 +1,4 @@
 # Home manager settings
-
 {
   inputs,
   outputs,
@@ -12,6 +11,7 @@
 {
   # Imports
   imports = [
+    #../modules/home-manager
   ];
 
   home = {
@@ -19,6 +19,7 @@
     homeDirectory = "/home/jade";
   }
 
+  # Packages
   home.packages = with pkgs; [
     brave
     kitty

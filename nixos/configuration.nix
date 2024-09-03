@@ -1,6 +1,5 @@
 # General settings for the NixOS System
 # aqui eu vou colocar as configurações do meu os gerais 
-
 {
   inputs,
   outputs,
@@ -17,7 +16,7 @@
     ./hardware-configuration.nix
 
     # Driver configuration
-    ./driver-configuration.nix
+    #./driver-configuration.nix
   ];
 
   # Boot
@@ -103,12 +102,6 @@
     };
   };
 
-  # Enable home-manager and git
-  programs = {
-    home-manager.enable = true;
-    git.enable = true;
-  };
-
   # Networking
   networking = {
     hostName = "nixos";
@@ -148,9 +141,20 @@
   # Enable experimental features (Flakes)
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  fonts.fontDir.enable = true;
+  #fonts.fontDir.enable = true;
 
+  # Enable home-manager and git
+  programs = {
+    home-manager.enable = true;
+    git.enable = true;
+  };
 
+  # Additional system packages
+  environment.systemPackages = with pkgs; [
+    zsh
+    neovim
+    home-manager
+  ];
 
   #nixpkgs = {
     # You can add overlays here
