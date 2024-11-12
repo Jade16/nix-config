@@ -19,6 +19,7 @@
     homeDirectory = "/home/jade";
   };
 
+  home.sessionPath = ["$HOME/.local/bin"];
   # Env vars
   home.sessionVariables = {
     EDITOR = "nvim";
