@@ -9,9 +9,9 @@
 }:
 
 {
-  # Imports
   imports = [
-    #../modules/home-manager
+    ../modules/home-manager
+    ./home_packges.nix
   ];
 
   home = {
@@ -19,34 +19,54 @@
     homeDirectory = "/home/jade";
   }
 
-  # Packages
-  home.packages = with pkgs; [
-    brave
-    kitty
-    sublime
-    capitaine-cursors-themed
-    gnome.gnome-tweaks
-    git
-    gnumake
-    gnat
-    stremio
-    valgrind
-    libsForQt5.okular
-    krita
-    vscode
-    neovim
-    logisim
-    inkscape-with-extensions
-    gimp-with-plugins
-    gdb
-    libsForQt5.kdenlive
-  ];
+  # Env vars
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    GTK_THEME = "Adwaita:dark";
+  };
+
+  # Clipboard manager - historico do ctrl c + d
+  services.cliphist.enable = true;
+
+  # Night light
+  services.wlsunset = {
+    enable = true;
+    temperature.night = 3000;
+
+    # Arbitrary latitude longitude pair set to São Paulo
+    # (should have been based on locale but whatever)
+    latitude = "-23.55";
+    longitude = "-46.63";
+  };
+
+  # Notification service
+  services.dunst = {
+    enable = true;
+    settings.global = {font = "GoMono Nerd Font Mono 16";};
+  };
+
+  # Direnv
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableZshIntegration = true;
+  };
+
+  # System diagostics
+  xdg.configFile."btop/themes/btop.theme".source = ./extra-configs/btop.theme;
+
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "${config.xdg.configHome}/btop/themes/btop.theme";
+      theme_background = false;
+    };
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
   # O QUE EH ISSO????
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  # NÃO MUDAR ISSO, NUNCA
   home.stateVersion = "23.05";
-  # MUDAR PARA 24.05???
 }
