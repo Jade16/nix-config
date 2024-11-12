@@ -11,13 +11,13 @@
 {
   imports = [
     ../modules/home-manager
-    ./home_packges.nix
+    ./home_packages.nix
   ];
 
   home = {
     username = "jade";
     homeDirectory = "/home/jade";
-  }
+  };
 
   # Env vars
   home.sessionVariables = {
@@ -53,7 +53,7 @@
   };
 
   # System diagostics
-  xdg.configFile."btop/themes/btop.theme".source = ./extra-configs/btop.theme;
+  xdg.configFile."btop/themes/btop.theme".source = ../extra-configs/btop.theme;
 
   programs.btop = {
     enable = true;

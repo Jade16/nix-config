@@ -9,7 +9,7 @@
 
   # Shell
   xdg.configFile."zsh-custom/themes/lucasegp.zsh-theme".source =
-    ./extra-configs/lucasegp.zsh-theme;
+    ../../extra-configs/lucasegp.zsh-theme;
 
   programs.zsh = {
     enable = true;
@@ -31,7 +31,6 @@
       plugins = [
         "git"
         "docker"
-        "pass"
         "aws"
         "docker"
         "docker-compose"

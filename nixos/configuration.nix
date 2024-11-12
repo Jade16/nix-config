@@ -15,6 +15,7 @@
     # Hardware configuration
     # configuracoes de hardware (apenas copiei da que ja tinha do meu computador, nao sei mexer nisso e nem acho que tenha que mexer em algo)
     ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
 
     # Driver configuration
     #./driver-configuration.nix
@@ -113,6 +114,18 @@
     };
   }; 
 
+  # Home Manages
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.jade = {
+      imports = [
+        ../home-manager/home.nix
+        #inputs.nixvim.homeManagerModules.nixvim
+      ];
+    };
+  };
+
   # Fonts
   fonts.packages = with pkgs; [(pkgs.nerdfonts.override {fonts = ["Go-Mono"];})];
 
@@ -130,9 +143,11 @@
 
   # Enable home-manager and git
   programs = {
-    home-manager.enable = true;
     git.enable = true;
+    zsh.enable = true;
   };
+
+
 
   # Additional system packages
   environment.systemPackages = with pkgs; [
