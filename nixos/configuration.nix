@@ -78,7 +78,7 @@
 
   # Networking
   networking = {
-    hostName = "jade_nixos";
+    hostName = "jade-nixos";
     networkmanager.enable = true;
   };
 
