@@ -15,7 +15,7 @@
     # Hardware configuration
     # configuracoes de hardware (apenas copiei da que ja tinha do meu computador, nao sei mexer nisso e nem acho que tenha que mexer em algo)
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.home-manager
+    #inputs.home-manager.nixosModules.home-manager
 
     # Driver configuration
     #./driver-configuration.nix
@@ -121,7 +121,7 @@
     users.jade = {
       imports = [
         ../home-manager/home.nix
-        #inputs.nixvim.homeManagerModules.nixvim
+        inputs.nixvim.homeManagerModules.nixvim
       ];
     };
   };
