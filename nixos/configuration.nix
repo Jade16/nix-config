@@ -139,8 +139,16 @@
   security.pam.services.swaylock = {};
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: rec {
+      umlet = pkgs.umlet.override{
+        jre = pkgs.oraclejre8;
+        jdk = pkgs.oraclejdk8;
+      };
+    };
+  };
+  
   # Enable experimental features (Flakes)
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
