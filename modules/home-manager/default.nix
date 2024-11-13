@@ -11,5 +11,6 @@
 	./configuration_statusbar.nix
 	./configuration_terminal.nix
 	./configuration_wm.nix
+	./configuration_bluetooth.nix
   ];
 }

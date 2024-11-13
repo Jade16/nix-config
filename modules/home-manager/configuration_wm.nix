@@ -31,7 +31,7 @@
           statusCommand = "${pkgs.i3status}/bin/i3status";
           fonts = {
             names = ["GoMono Nerd Font"];
-            size = 15.0;
+            size = 12.0;
           };
 
           colors = {
