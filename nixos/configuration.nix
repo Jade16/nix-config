@@ -15,7 +15,7 @@
     # Hardware configuration
     # configuracoes de hardware (apenas copiei da que ja tinha do meu computador, nao sei mexer nisso e nem acho que tenha que mexer em algo)
     ./hardware-configuration.nix
-    #inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
 
     # Driver configuration
     #./driver-configuration.nix
@@ -30,6 +30,11 @@
       efi.canTouchEfiVariables = true;
     };
   };
+
+  # Bluetooth
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Time Zone
   time.timeZone = "America/Sao_Paulo";
