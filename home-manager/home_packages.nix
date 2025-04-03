@@ -11,6 +11,10 @@
   home.packages = with pkgs; [
     # browsers
     brave
+    inputs.zen-browser.packages."${system}".specific 
+    
+    # Pomodoro
+    tomato-c
 
     # terminal
     kitty
@@ -35,6 +39,7 @@
 
     # leitor pdf
     libsForQt5.okular
+    sioyek
 
     # editor imagens
     inkscape-with-extensions
@@ -52,6 +57,13 @@
     wl-mirror
     wlsunset
 
+    # VPN
+    openconnect
+
+    # SQL Developer
+    sqlcl # SQL Developer Command Line
+    #sqldeveloper # SQL Developer
+
     # Files
     fzf
     ripgrep
@@ -68,12 +80,16 @@
     # CLI - Fun
     neofetch
 
+    # VM
+    virtualbox
+
     # Programming - <Insert Nausea Emoji>
     (pkgs.python311.withPackages (python-pkgs: [
       #python-pkgs.pip
       python-pkgs.nltk
     ]))
 
+    # CUDA
+   #cudaPackages.nccl  
   ];
-
 }

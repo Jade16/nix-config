@@ -62,7 +62,7 @@
   zramSwap.enable = true;
 
   # Enable sound with pipewire
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -77,8 +77,8 @@
     # Enable OpenGL
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      #driSupport = true;
+      #driSupport32Bit = true;
     };
   };
 
@@ -133,6 +133,8 @@
 
   # Fonts
   fonts.packages = with pkgs; [(pkgs.nerdfonts.override {fonts = ["Go-Mono"];})];
+  
+   
 
   # Security
   security.polkit.enable = true;
@@ -141,12 +143,19 @@
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "sqldeveloper"
+    ];
+    permittedInsecurePackages = [
+      "oraclejdk-8u281"
+    ];
     packageOverrides = pkgs: rec {
       umlet = pkgs.umlet.override{
         jre = pkgs.oraclejre8;
         jdk = pkgs.oraclejdk8;
       };
     };
+    cudaSupport = true;
   };
   
   # Enable experimental features (Flakes)
@@ -160,12 +169,13 @@
     zsh.enable = true;
   };
 
-
+  virtualisation.docker.enable = true;
 
   # Additional system packages
   environment.systemPackages = with pkgs; [
     zsh
     neovim
+    docker-compose 
   ];
 
   # Greeter
@@ -179,9 +189,6 @@
       default_session = initial_session;
     };
   };
-
-
-
   # NÃO MUDAR
   system.stateVersion = "23.05";
 }

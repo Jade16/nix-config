@@ -6,11 +6,11 @@
   # my-module = import ./my-module.nix;
   imports = [
 	./configuration_git.nix
-	#./configuration_neovim.nix
+	./configuration_neovim.nix
 	./configuration_shell.nix
 	./configuration_statusbar.nix
 	./configuration_terminal.nix
 	./configuration_wm.nix
-	./configuration_bluetooth.nix
+  #./configuration_sioyek.nix
   ];
 }

@@ -43,7 +43,9 @@
   # Notification service
   services.dunst = {
     enable = true;
-    settings.global = {font = "GoMono Nerd Font Mono 16";};
+    settings.global = {
+      font = "GoMono Nerd Font Mono 16";
+    };
   };
 
   # Direnv
@@ -67,6 +69,9 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
   # O QUE EH ISSO????
+
+  #home.file."/home/jade/.config/fontconfig/conf.d/10-hm-fonts.conf".source = ...;
+   
 
   # NÃO MUDAR ISSO, NUNCA
   home.stateVersion = "23.05";
