@@ -1,7 +1,6 @@
 # Home manager settings
 {
   inputs,
-  outputs,
   lib,
   config,
   pkgs,

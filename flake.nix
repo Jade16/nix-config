@@ -19,13 +19,13 @@
     }; 
   };
 
-  outputs = @ inputs {
-    self,
-    nixpkgs,
+  outputs = { 
+    self, 
+    nixpkgs, 
     home-manager,
     zen-browser, 
     ...
-  }: let
+  }@inputs: let
     inherit (self) outputs;
     # Supported systems for your flake packages, shell, etc.
     systems = [
@@ -53,14 +53,14 @@
     nixosModules = import ./modules/nixos;
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./modules/home-manager;
+    #homeManagerModules = import ./modules/home-manager;
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       # FIXME replace with your hostname
       jade-nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {inherit inputs;};
         modules = [
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
@@ -74,7 +74,7 @@
       # FIXME replace with your username@hostname
       "jade@jade-nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {inherit inputs;};
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix

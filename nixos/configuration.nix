@@ -2,7 +2,6 @@
 # configuracoes gerais do meu NixOS 
 {
   inputs,
-  outputs,
   lib,
   config,
   pkgs,
