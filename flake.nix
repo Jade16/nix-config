@@ -19,13 +19,13 @@
     }; 
   };
 
-  outputs = {
+  outputs = @ inputs {
     self,
     nixpkgs,
     home-manager,
     zen-browser, 
     ...
-  } @ inputs: let
+  }: let
     inherit (self) outputs;
     # Supported systems for your flake packages, shell, etc.
     systems = [
