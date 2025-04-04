@@ -8,7 +8,7 @@
     # at the same time. Here's an working example:
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
-    zen-browser.url = "github:0xc000022070/zen-browser-flake"; 
+    #zen-browser.url = "github:0xc000022070/zen-browser-flake"; 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +23,7 @@
     self, 
     nixpkgs, 
     home-manager,
-    zen-browser, 
+    #zen-browser, 
     ...
   }@inputs: let
     inherit (self) outputs;
@@ -64,6 +64,11 @@
         modules = [
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
+          home-manager.nixosModules.home-manager{
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jade = import ./home-manager/home.nix; 
+          } 
         ];
       };
     };
