@@ -23,10 +23,22 @@
   # Boot
   boot = {
     loader = {
-      # O QUE EH ISSO??
-      systemd-boot.enable = true;
-      # O QUE EH ISSO??
-      efi.canTouchEfiVariables = true;
+      #timeout = 10;
+      systemd-boot = {
+        enable = true;
+        #configurationLimit = 10;
+      };
+      efi = { 
+        canTouchEfiVariables = true;
+        #efiSysMountPoint = "/boot"; #/efi";
+      };
+      grub = {
+        efiSupport = true;
+        devices = [ "nodev" ];
+        enable = true;
+        useOSProber = true;
+        #version = 2;
+      };
     };
   };
 
@@ -37,7 +49,7 @@
 
   # Time Zone
   time.timeZone = "America/Sao_Paulo";
-
+  time.hardwareClockInLocalTime = true;
   # Internationalisation properties
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -80,6 +92,7 @@
       #driSupport32Bit = true;
     };
   };
+
 
   # Networking
   networking = {
@@ -165,7 +178,7 @@
   # Enable home-manager and git
   programs = {
     git.enable = true;
-    zsh.enable = true;
+    zsh.enable = true;    
   };
 
   virtualisation.docker.enable = true;
