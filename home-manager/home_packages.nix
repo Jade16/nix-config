@@ -40,6 +40,7 @@
     # leitor pdf
     libsForQt5.okular
     sioyek
+    zotero 
 
     # editor imagens
     inkscape-with-extensions
