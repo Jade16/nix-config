@@ -21,22 +21,38 @@
   ];
 
   # Boot
+  boot.kernelParams = [
+    "pci=nommconf"    # Resolve conflitos de configuração de memória PCI
+    "pcie_aspm=off"   # Desativa ASPM se houver instabilidades
+    "nvme_core.default_ps_max_latency_us=0"  # Otimiza performance NVMe
+  ]; 
   boot = {
     loader = {
       #timeout = 10;
       systemd-boot = {
-        enable = true;
+        enable = false;
         #configurationLimit = 10;
       };
       efi = { 
-        canTouchEfiVariables = true;
-        #efiSysMountPoint = "/boot"; #/efi";
+        canTouchEfiVariables = false;
+        efiSysMountPoint = "/boot/efi";
       };
       grub = {
+        enable = true;
+        configurationLimit = 5;
+        #copyKernels = true;
         efiSupport = true;
         devices = [ "nodev" ];
-        enable = true;
         useOSProber = true;
+        efiInstallAsRemovable = true;
+        fsIdentifier = "uuid";
+        #theme = pkgs.stdenv.mkDerivation{
+          
+        #};
+        extraEntries = ''
+        menuentry "Reboot"{ reboot }
+        menuentry "Poweroff"{ halt }
+        '';
         #version = 2;
       };
     };

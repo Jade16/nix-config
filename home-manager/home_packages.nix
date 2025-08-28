@@ -12,7 +12,10 @@
     brave
     #inputs.zen-browser.packages.${pkgs.system}.specific
       
-    
+    # pacotes para o bootloader (?)
+    os-prober
+    ntfs3g
+
     # Pomodoro
     tomato-c
 
