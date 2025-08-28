@@ -10,7 +10,7 @@
     enable = true;
     extraConfig = {
       user = {
-        name = "jade16";
+        name = "Jade";
         email = "jade_bortot_paiva@usp.br";
       };
       init = {defaultBranch = "main";};
