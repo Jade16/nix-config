@@ -242,6 +242,8 @@
       };
     };
 
+    plugins.web-devicons.enable = true;
+
     plugins = {
       tmux-navigator.enable = true;
       lualine.enable = true;
@@ -272,7 +274,8 @@
       };
       treesitter = {
         enable = true;
-        ensureInstalled = [
+        #ensureInstalled = [
+        settings.ensure_installed = [
           "c"
           "cpp"
           "go"
@@ -305,17 +308,28 @@
         '';
       };
       # java
-      nvim-jdtls = {
+      #nvim-jdtls = {
+      jdtls = {
         enable = true;
-        data = "${config.xdg.cacheHome}/jdtls/workspace";
-        configuration = "${config.xdg.cacheHome}/jdtls/config";
+        settings.settings = { 
+          cmd = [
+            "-configuration"
+            "${config.xdg.cacheHome}/jdtls/config"
+            "-data"
+            "${config.xdg.cacheHome}/jdtls/workspace" 
+          ];
+        };
+        #data = "${config.xdg.cacheHome}/jdtls/workspace";
+        #configuration = "${config.xdg.cacheHome}/jdtls/config";
       };
       copilot-chat.enable = true;
       copilot-cmp.enable = true;
       copilot-lua = {
         enable = true;
-        panel.enabled = false;
-        suggestion.enabled = false;
+        settings = {
+          panel.enabled = false;
+          suggestion.enabled = false;
+        };
       };
       cmp = {
         enable = true;

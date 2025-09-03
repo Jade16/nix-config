@@ -90,7 +90,9 @@
 
   # Enable sound with pipewire
   #sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  #hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = true;
+  
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -102,7 +104,8 @@
   # Hardware settings
   hardware = {
     # Enable OpenGL
-    opengl = {
+    #opengl = {
+      graphics = {
       enable = true;
       #driSupport = true;
       #driSupport32Bit = true;
@@ -160,8 +163,10 @@
   };
 
   # Fonts
-  fonts.packages = with pkgs; [(pkgs.nerdfonts.override {fonts = ["Go-Mono"];})];
-  
+  #fonts.packages = with pkgs; [(pkgs.nerdfonts.override {fonts = ["Go-Mono"];})];
+  fonts.packages = with pkgs; [
+    nerd-fonts.go-mono
+  ];
    
 
   # Security
