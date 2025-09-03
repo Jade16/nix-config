@@ -2,12 +2,12 @@
   description = "Your new nix config";
 
   inputs = {
-    #zen-browser = {
-      #url = "github:0xc000022070/zen-browser-flake";
-      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
-      # to have it up-to-date or simply don't specify the nixpkgs input  
-      #inputs.nixpkgs.follows = "nixpkgs";
-    #}; 
+    zen-browser.url = "github:youwen5/zen-browser-flake";
+    # optional, but recommended if you closely follow NixOS unstable so it shares
+    # system libraries, and improves startup time
+    # NOTE: if you experience a build failure with Zen, the first thing to check is to remove this line!
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+ 
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     # You can access packages and modules from different nixpkgs revs

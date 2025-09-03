@@ -208,7 +208,8 @@
   environment.systemPackages = with pkgs; [
     zsh
     neovim
-    docker-compose 
+    docker-compose
+    inputs.zen-browser.packages.${pkgs.system}.default 
   ];
 
   # Greeter

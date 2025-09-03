@@ -10,7 +10,7 @@
   home.packages = with pkgs; [
     # browsers
     brave
-    #inputs.zen-browser.packages.${pkgs.system}.specific
+    #inputs.zen-browser.packages.${pkgs.system}.default 
       
     # pacotes para o bootloader (?)
     os-prober
