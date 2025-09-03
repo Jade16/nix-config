@@ -28,10 +28,8 @@
   ]; 
   boot = {
     loader = {
-      #timeout = 10;
       systemd-boot = {
         enable = false;
-        #configurationLimit = 10;
       };
       efi = { 
         canTouchEfiVariables = false;
@@ -40,20 +38,15 @@
       grub = {
         enable = true;
         configurationLimit = 5;
-        #copyKernels = true;
         efiSupport = true;
         devices = [ "nodev" ];
         useOSProber = true;
         efiInstallAsRemovable = true;
         fsIdentifier = "uuid";
-        #theme = pkgs.stdenv.mkDerivation{
-          
-        #};
         extraEntries = ''
         menuentry "Reboot"{ reboot }
         menuentry "Poweroff"{ halt }
         '';
-        #version = 2;
       };
     };
   };
