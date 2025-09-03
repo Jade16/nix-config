@@ -16,11 +16,18 @@
     os-prober
     ntfs3g
 
+    # Acesso remoto 
+    anydesk
+
+    # Cliente para Google Drive
+    grive2 
+
     # Pomodoro
     tomato-c
 
     # terminal
     kitty
+    wezterm 
 
     # editor
     sublime
@@ -95,5 +102,8 @@
 
     # CUDA
    #cudaPackages.nccl  
+
+   # Docker
+   #docker_28 
   ];
 }
