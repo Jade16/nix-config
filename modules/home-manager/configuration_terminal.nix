@@ -8,7 +8,8 @@
   # Terminal
   programs.kitty = {
     enable = true;
-    theme = "Catppuccin-Mocha";
+    #theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha"; 
     font = {
       name = "GoMono Nerd Font Mono";
       size = 18;

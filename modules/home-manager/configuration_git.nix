@@ -21,7 +21,7 @@
   services.gpg-agent = {
     enable = true;
     #pinentryPackage = pkgs.pinentry-qt;
-    pinentryPackage = pkgs.pinentry-gtk2; 
+    pinentry.package = pkgs.pinentry-gtk2; 
     defaultCacheTtl = 600;
 
     enableSshSupport = true;

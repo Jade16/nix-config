@@ -47,7 +47,8 @@
       custom = "${config.xdg.configHome}/zsh-custom";
     };
 
-    initExtra = ''
+    #initExtra = ''
+    initContent = ''
       fzcd() {
         dir_to_change=$(              \
           find $@                     \
