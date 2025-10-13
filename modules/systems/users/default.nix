@@ -19,6 +19,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+
     users.jade = {
       home = {
         username = "jade";
@@ -27,14 +28,14 @@
         sessionPath = [
           "$HOME/.local/bin"
         ];
-
         sessionVariables = {
           EDITOR = "nvim";
           GTK_THEME = "Adwaita:dark";
         };
-      };
-      xdg.enable = true; 
+
+      }; 
       systemd.user.startServices = "sd-switch";
+      xdg.enable = true;   
     };
   };
 }
