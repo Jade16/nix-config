@@ -44,7 +44,7 @@
         
         modules = [
           # 1. Configuração específica do host (caminho corrigido)
-          ./hosts/jade-nixos/configuration.nix
+          ./machines/laptop/configuration.nix
 
           # 2. Módulos de flakes externos que você usa
           home-manager.nixosModules.home-manager

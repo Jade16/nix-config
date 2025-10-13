@@ -1,5 +1,5 @@
 # mapeamento de todos os arquivos dos modulos
-{ config, lib, pkgs, ... }:
+#{ config, lib, pkgs, ... }:
 
 [
   ### Hardware
