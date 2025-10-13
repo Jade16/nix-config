@@ -1,7 +1,6 @@
 # mapeamento de todos os arquivos dos modulos
 { config, lib, pkgs, ... }:
 
-{
 [
   ### Hardware
   ./hardware/keyboard/br-abnt2.nix
@@ -48,5 +47,5 @@
   ./tools/terminal/kitty/default.nix
   ./tools/terminal/nvim/default.nix
   ./tools/terminal/zsh/zsh.nix
-  ];
-  }
+  ]
+  

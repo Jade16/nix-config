@@ -1,5 +1,5 @@
 {
-  description = "AAAAAAAAAAAAAAAAAAAAAAAA";
+  description = "My config NixOS";
 
   inputs = {
     #nixpkgs.url = "github:Scrumplex/nixpkgs/nixos-monado";
@@ -23,49 +23,51 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+  outputs = { 
+  self, 
+  nixpkgs, 
+  home-manager, 
+  nixvim, 
+  agenix, 
+  ... 
+  } @inputs:
+  let
+    system = "x86_64-linux";
+    lib = nixpkgs.lib;
+  in {
+    nixosConfigurations = {
+      jade-nixos = lib.nixosSystem {
+        inherit system;
+        
+        # É uma boa prática passar os inputs para os módulos
+        specialArgs = { inherit inputs; }; 
+        
+        modules = [
+          # 1. Configuração específica do host (caminho corrigido)
+          ./hosts/jade-nixos/configuration.nix
 
-  outputs = { self, nixpkgs, home-manager, nixvim, agenix, ... } @inputs:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-      
-      # <<< Estrutura dos módulos corrigida
-      commonModules = [
-        agenix.nixosModules.default
-        home-manager.nixosModules.home-manager
-        nixvim.nixosModules.nixvim
-        # A configuração do home-manager para o usuário Jade foi movida
-        # para o nixosConfigurations, conforme mostrado abaixo.
-      ];
+          # 2. Módulos de flakes externos que você usa
+          home-manager.nixosModules.home-manager
+          nixvim.nixosModules.nixvim
+          agenix.nixosModules.default
 
-    in {
-      # <<< Seção nixosConfigurations readicionada, que estava faltando
-      nixosConfigurations = {
-        jade-nixos = lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./machines/laptop/configuration.nix # <<< Verifique se este caminho está correto!
-          ] ++ commonModules ++ [ # <<< Adicionando os módulos comuns e a config do HM
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.jade = import ./home-manager/home.nix;
-            }
-          ];
-        };
-      };
-
-      nixConfig = {
-        experimental-features = [ "nix-command" "flakes" ];
-        substituters = [ "https://cache.nixos.org/" ];
-        extra-substituters = [
-          "https://ow-mods.cachix.org"
-          "https://nix-community.cachix.org"
-        ];
-        extra-trusted-public-keys = [
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCwyvRCYg3Fs="
-          "ow-mods.cachix.org-1:6RTOd1dSRibA2W0MpZHxzT0tw1RzyhKObTPKQJpcrZo="
-        ];
+        ] ++ (import ./modules/modules.nix); # 3. Importa e concatena TODOS os seus módulos da pasta /modules
       };
     };
-}
+
+    # A seção 'nixConfig' está OK, pode manter como está.
+    nixConfig = {
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [ "https://cache.nixos.org/" ];
+      extra-substituters = [
+        "https://ow-mods.cachix.org"
+        "https://nix-community.cachix.org"
+      ];
+      extra-trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCwyvRCYg3Fs="
+        "ow-mods.cachix.org-1:6RTOd1dSRibA2W0MpZHxzT0tw1RzyhKObTPKQJpcrZo="
+      ];
+    };
+  };
+} 
+  
