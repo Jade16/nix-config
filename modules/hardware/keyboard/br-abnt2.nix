@@ -23,11 +23,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    console.keyMap = "br-abnt2"; 
-    
-    home-manager.users.jade = {
-      # Clipboard manager - historico do ctrl c + d
-      services.cliphist.enable = true; 
-    };
+    console.keyMap = "br-abnt2";  
   };
 }

@@ -7,11 +7,11 @@
 
 with lib;
 let
-  cfg = config.systems.gpu.nvidia;
+  cfg = config.systems.services.packages.browser.zenbrowser;
 in
 {
   options = {
-    systems.gpu.nvidia = {
+    systems.services.packages.browser.zenbrowser = {
       enable = mkOption {
         default = false;
         type = types.bool;

@@ -1,8 +1,9 @@
 {
-  config,
+  inputs,
   lib,
+  config,
   pkgs,
-  ...
+  ... 
 }:
 {
   users.users.jade = {
@@ -21,23 +22,20 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.jade = {
-      home = {
-        username = "jade";
-        homeDirectory = "/home/jade";
-        sessionPath = ["$HOME/.local/bin"];
-        sessionVariables = {
-          EDITOR = "nvim";
-          GTK_THEME = "Adwaita:dark";
-        }; 
-        stateVersion = "23.05"; 
-      };
-      #imports = [
-        #../home-manager/home.nix
-        #inputs.nixvim.homeManagerModules.nixvim
-      #];
+    users.jade = { 
       systemd.user.startServices = "sd-switch"; 
     };
   };
+
+  home = {
+    username = "jade";
+    homeDirectory = "/home/jade";
+    sessionPath = ["$HOME/.local/bin"];
+    sessionVariables = {
+      EDITOR = "nvim";
+      GTK_THEME = "Adwaita:dark";
+    }; 
+    stateVersion = "23.05"; 
+  }; 
 }
 

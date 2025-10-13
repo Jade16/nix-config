@@ -23,122 +23,72 @@ in
   };
 
   config = mkIf cfg.enable {
-    home-manager.users.locochoco = {
-      programs.waybar = {
-        enable = true;
-        style = ./style.css;
-        settings =
-          let
-            topBarHeight = 40;
-            bottomBarHeight = 40;
-          in
-          {
-            mainBar = {
-              name = "mainBar";
-              layer = "top";
-              position = "top";
-              #mode = "overlay";
-              exclusive = false;
-              passthrough = false;
-              spacing = 10;
-              height = topBarHeight;
-              output = [
-                "eDP-1"
-                "HDMI-A-1"
-                "DP-2"
-                "eDP-2"
-              ];
-              modules-center = [
-                "memory"
-                "clock"
-                "temperature"
-              ];
-              modules-left = [ "tray" ];
-              modules-right = [
-                "bluetooth"
-                "network"
-              ];
+    home-manager.users.jade = {
+      programs.i3status = {
+      enable = true;
+      enableDefault = false;
 
-              clock = {
-                interval = 60;
-                tooltip = true;
-                format = "{:%H:%M}";
-                tooltip-format = "{:%d/%m/%Y}";
-              };
-
-              bluetooth = {
-                format = " {status}";
-                format-connected = " {device_alias}";
-                format-connected-battery = " {device_alias} {device_battery_percentage}%";
-                # format-device-preference = [ "device1", "device2" ]; # preference list deciding the displayed device
-                tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
-                tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
-                tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-                tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
-                on-double-click = "kitty bluetoothctl";
-              };
-
-              network = {
-                interface = "wlp2s0";
-                format = "{ifname}";
-                format-wifi = "{essid} ({signalStrength}%) ";
-                format-ethernet = "{ipaddr}/{cidr} 󰊗";
-                format-disconnected = ""; # An empty format will hide the module.
-                tooltip-format = "{ifname} via {gwaddr} 󰊗";
-                tooltip-format-wifi = "{essid} ({signalStrength}%) ";
-                tooltip-format-ethernet = "{ifname} ";
-                tooltip-format-disconnected = "Disconnected";
-                max-length = 50;
-                on-double-click = "kitty nmtui";
-              };
-
-              memory = {
-                interval = 30;
-                format = "{percentage}% ";
-                tooltip-format = "{used:0.1f}GiB used\n{swapUsed:0.1f}GiB swap";
-              };
-
-              temperature = {
-                format = "{temperatureC}°C 󱃃";
-                hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
-              };
-            };
-
-            # bottomBar = {
-            #    name = "bottomBar";
-            #    layer = "top";
-            #    position = "bottom";
-            #    #mode = "dock";
-            #    exclusive = false;
-            #    passthrough = false;
-            #    spacing = 10;
-            #    height = bottomBarHeight;
-            #    output = [ "eDP-1" "HDMI-A-1" ];
-            #    modules-right = [ "bluetooth" "network" ];
-            #
-            # };
-
-            karmaBar = {
-              name = "karmaBar";
-              layer = "top";
-              position = "bottom";
-              #mode = "dock";
-              exclusive = false;
-              passthrough = false;
-              margin-left = bottomBarHeight;
-              margin-bottom = bottomBarHeight;
-              output = [
-                "eDP-1"
-                "HDMI-A-1"
-              ];
-              modules-left = [ "image#karma-battery" ];
-              "image#karma-battery" = {
-                exec = "sh ${./custom-modules/karma-battery/karma-battery.sh}";
-                size = 90;
-                interval = 30;
-              };
-            };
+      modules = {
+        "tztime local" = {
+          enable = true;
+          position = 0;
+          settings = {format = "%d/%m/%Y %H:%M ";};
+        };
+        "wireless wlp0s20f3" = {
+          enable = true;
+          position = 1;
+          settings = {
+            format_up = " NET:%quality at %essid ";
+            format_down = "NET: down";
           };
+        };
+        "battery 1" = {
+          enable = true;
+          position = 2;
+          settings = {
+            format = " BAT: %percentage %status ";
+            format_down = " BAT: none ";
+            status_chr = "charging";
+            status_bat = "draining";
+            status_unk = "unknown";
+            status_full = "full";
+            last_full_capacity = true;
+            path = "/sys/class/power_supply/BAT%d/uevent";
+            low_threshold = 20;
+          };
+        };
+        "load" = {
+          enable = true;
+          position = 3;
+          settings = {format = " LOAD: %1min ";};
+        };
+        "cpu_temperature 0" = {
+          enable = true;
+          position = 4;
+          settings = {
+            format = " TEMP: %degrees C ";
+            path = "/sys/devices/platform/coretemp.0/hwmon/hwmon?/temp1_input";
+          };
+        };
+        "memory" = {
+          enable = true;
+          position = 5;
+          settings = {
+            format = " MEM: %used ";
+            threshold_degraded = "25%";
+          };
+        };
+        "volume master" = {
+          enable = true;
+          position = 6;
+          settings = {
+            format = " VOL: %volume ";
+            format_muted = " VOL: muted";
+            device = "default";
+            mixer = "Master";
+            mixer_idx = 0;
+          };
+        };
       };
     };
   };

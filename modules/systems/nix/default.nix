@@ -44,31 +44,16 @@ in
       "nix-command"
       "flakes"
     ];
-    # Allow unfree packages
-    nixpkgs.config = {
-      allowUnfree = true;
-      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "sqldeveloper"
-      ];
-      permittedInsecurePackages = [
-        "oraclejdk-8u281"
-      ];
-      packageOverrides = pkgs: rec {
-        umlet = pkgs.umlet.override{
-          jre = pkgs.oraclejre8;
-          jdk = pkgs.oraclejdk8;
-        };
-      };
-      cudaSupport = true;
-    }; 
-    #nix.extraOptions = ''
-      #!include ${cfg.github-api-path}
-    #'';
-    #programs.nh = {
-      #enable = true;
-      #clean.enable = true;
-      #clean.extraArgs = "--keep-since 4d --keep 3";
-      #flake = "/home/locochoco/.dotfiles"; # sets NH_OS_FLAKE variable for you
-    #};
+    # daqui pra baixo esta ok
+    # Gpg agent
+    services.gpg-agent = {
+      enable = true;
+      #pinentryPackage = pkgs.pinentry-qt;
+      pinentry.package = pkgs.pinentry-gtk2; 
+      defaultCacheTtl = 600;
+
+      enableSshSupport = true;
+      defaultCacheTtlSsh = 600;
+    };  
   };
 }

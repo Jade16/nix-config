@@ -7,16 +7,16 @@
 
 with lib;
 let
-  cfg = config.systems.boot.plymouth;
+  cfg = config.systems.boot;
 in
 {
   options = {
-    systems.boot.plymouth = {
+    systems.boot = {
       enable = mkOption {
         default = false;
         type = types.bool;
         description = ''
-          Enables plymouth 
+          Enables Boot 
         '';
       };
     };

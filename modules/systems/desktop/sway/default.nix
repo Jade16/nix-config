@@ -7,16 +7,16 @@
 
 with lib;
 let
-  cfg = config.systems.gpu.nvidia;
+  cfg = config.systems.desktop.sway;
 in
 {
   options = {
-    systems.gpu.nvidia = {
+    systems.desktop.sway = {
       enable = mkOption {
         default = false;
         type = types.bool;
         description = ''
-          Enables Intel graphics  
+          Enables Sway  
         '';
       };
       open = mkOption {

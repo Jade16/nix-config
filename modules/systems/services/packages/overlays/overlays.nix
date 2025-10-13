@@ -8,11 +8,11 @@
 
 with lib;
 let
-  cfg = config.systems.boot.efi;
+  cfg = config.systems.services.packages.overlays.overlays;
 in
 {
   options = {
-    systems.audio.pipewire = {
+    systems.packages.overlays.overlays = {
       enable = mkOption {
         default = false;
         type = types.bool;
@@ -44,5 +44,23 @@ in
         config.allowUnfree = true;
       };
     };
+
+    # Allow unfree packages
+    nixpkgs.config = {
+      allowUnfree = true;
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "sqldeveloper"
+      ];
+      permittedInsecurePackages = [
+        "oraclejdk-8u281"
+      ];
+      packageOverrides = pkgs: rec {
+        umlet = pkgs.umlet.override{
+          jre = pkgs.oraclejre8;
+          jdk = pkgs.oraclejdk8;
+        };
+      };
+      cudaSupport = true;
+    }; 
   };
 }

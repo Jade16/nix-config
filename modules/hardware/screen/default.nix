@@ -7,11 +7,11 @@
 
 with lib;
 let
-  cfg = config.systems.gpu.nvidia;
+  cfg = config.hardware.screen;
 in
 {
   options = {
-    systems.gpu.nvidia = {
+    systems.hardware.screen = {
       enable = mkOption {
         default = false;
         type = types.bool;
@@ -34,11 +34,11 @@ in
     hardware = {
       # Enable OpenGL
       #opengl = {
-      graphics = {
+        graphics = {
         enable = true;
         #driSupport = true;
         #driSupport32Bit = true;
-      };  
-    };
+      };
+    }; 
   };
 }

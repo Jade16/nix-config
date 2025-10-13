@@ -108,4 +108,10 @@
       #docker_28 
     ];
   };
+  # Additional system packages
+  environment.systemPackages = with pkgs; [
+    zsh
+    neovim
+    docker-compose 
+  ]; 
 }

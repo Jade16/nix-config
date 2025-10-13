@@ -7,11 +7,11 @@
 
 with lib;
 let
-  cfg = config.systems.desktop.dunst;
+  cfg = config.systems.desktop.services-user.dunst;
 in
 {
   options = {
-    systems.desktop.dunst = {
+    systems.desktop.services-user.dunst = {
       enable = mkOption {
         default = false;
         type = types.bool;
