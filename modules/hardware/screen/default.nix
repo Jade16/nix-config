@@ -11,7 +11,7 @@ let
 in
 {
   options = {
-    systems.hardware.screen = {
+    hardware.screen = {
       enable = mkOption {
         default = false;
         type = types.bool;

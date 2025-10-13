@@ -23,8 +23,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.variables.EDITOR = "nvim"; 
     home-manager.users.jade = {
-      environment.variables.EDITOR = "nvim";
       # Editor
       programs.nixvim = {
         enable = true;
@@ -421,4 +421,5 @@ in
       ];
     };
   };   
+};
 }

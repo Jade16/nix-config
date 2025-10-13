@@ -47,7 +47,7 @@ in
 
   config = mkIf cfg.enable {
     networking = {
-      hostName = "jade-nixos"
+      hostName = "jade-nixos";
       networkmanager.enable = true;
       #firewall = {
         #enable = cfg.firewall.enable;

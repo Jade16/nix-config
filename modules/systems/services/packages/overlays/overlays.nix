@@ -1,66 +1,61 @@
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+# Em .../overlays/overlays.nix
+
+{ lib, config, inputs, ... }:
 
 with lib;
-let
-  cfg = config.systems.services.packages.overlays.overlays;
-in
+# O bloco 'let' foi removido.
 {
-  options = {
-    systems.packages.overlays.overlays = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables pipewire 
-        '';
-      };
-    };
+  # ====================================================================
+  # PARTE 1: Declarar a opção (isso já estava correto)
+  # ====================================================================
+  options.systems.services.packages.overlays.enable = mkOption {
+    type = types.bool;
+    default = false;
+    description = "Enable custom overlays and Nixpkgs configurations.";
   };
 
-  config = mkIf cfg.enable {
-    # This one brings our custom packages from the 'pkgs' directory
-    additions = final: _prev: import ../pkgs final.pkgs;
+  # ====================================================================
+  # PARTE 2: Usar a opção (com o caminho completo e correto)
+  # ====================================================================
+  config = mkIf config.systems.services.packages.overlays.enable (
+    let
+      # Os overlays continuam como variáveis locais, isso está correto.
+      additions = final: _prev: import ../pkgs final.pkgs;
 
-    # This one contains whatever you want to overlay
-    # You can change versions, add patches, set compilation flags, anything really.
-    # https://nixos.wiki/wiki/Overlays
-    modifications = final: prev: {
-      # example = prev.example.overrideAttrs (oldAttrs: rec {
-      # ...
-      # });
-    };
-
-    # When applied, the unstable nixpkgs set (declared in the flake inputs) will
-    # be accessible through 'pkgs.unstable'
-    unstable-packages = final: _prev: {
-      unstable = import inputs.nixpkgs-unstable {
-        system = final.system;
-        config.allowUnfree = true;
+      modifications = final: prev: {
+        # example = prev.example.overrideAttrs (oldAttrs: rec { ... });
       };
-    };
 
-    # Allow unfree packages
-    nixpkgs.config = {
-      allowUnfree = true;
-      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "sqldeveloper"
-      ];
-      permittedInsecurePackages = [
-        "oraclejdk-8u281"
-      ];
-      packageOverrides = pkgs: rec {
-        umlet = pkgs.umlet.override{
-          jre = pkgs.oraclejre8;
-          jdk = pkgs.oraclejdk8;
+      unstable-packages = final: _prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          system = final.system;
+          config.allowUnfree = true;
         };
       };
-      cudaSupport = true;
-    }; 
-  };
+    in
+    {
+      nixpkgs.overlays = [
+        additions
+        modifications
+        unstable-packages
+      ];
+
+      nixpkgs.config = {
+        allowUnfree = true;
+        allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+          "sqldeveloper"
+        ];
+        permittedInsecurePackages = [
+          "oraclejdk-8u281"
+        ];
+        packageOverrides = pkgs: rec {
+          umlet = pkgs.umlet.override {
+            jre = pkgs.oraclejre8;
+            jdk = pkgs.oraclejdk8;
+          };
+        };
+        cudaSupport = true;
+      };
+    }
+  );
 }

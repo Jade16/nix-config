@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 {
+  lib,
   config,
   pkgs,
   ...
@@ -10,13 +11,13 @@
 
 {
   imports = [
-    ../../modules/modules.nix
+    #../../modules/modules.nix
     ./hardware-configuration.nix
   ];
 
   networking = {
     hostName = "jade-nixos"; # Define your hostname.
-    networmanager.enable = true;
+    networkmanager.enable = true;
   };
 
   system.stateVersion = "23.05"; # NAO MUDAR!
@@ -113,14 +114,14 @@
     };
     services = {
       docker.enable = true;
-    };
-    packages = {
-      browser = {
-        zenbrowser.enable = true;
-      };
-      enable = true;
-      overlays = {
-        overlays.enable = true;
+      packages = {
+        browser = {
+          zenbrowser.enable = true;
+        };
+        #enable = true;
+        overlays = {
+          enable = false;
+        };
       };
     };
   };

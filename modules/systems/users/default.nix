@@ -1,41 +1,40 @@
+{ pkgs, ... }:
+
 {
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ... 
-}:
-{
+  # --- Parte do NixOS: "Construindo o Apartamento" ---
   users.users.jade = {
     isNormalUser = true;
     home = "/home/jade";
-    description = "Jade"; 
+    description = "Jade";
     extraGroups = [
       "networkmanager"
       "wheel"
-      "video" 
-      "libvirtd" 
-      "wireshark" 
+      "video"
+      "libvirtd"
+      "wireshark"
     ];
-    shell = pkgs.zsh; 
+    shell = pkgs.zsh;
   };
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.jade = { 
-      systemd.user.startServices = "sd-switch"; 
+    users.jade = {
+      home = {
+        username = "jade";
+        homeDirectory = "/home/jade";
+        stateVersion = "25.05";
+        sessionPath = [
+          "$HOME/.local/bin"
+        ];
+
+        sessionVariables = {
+          EDITOR = "nvim";
+          GTK_THEME = "Adwaita:dark";
+        };
+      };
+      xdg.enable = true; 
+      systemd.user.startServices = "sd-switch";
     };
   };
-
-  home = {
-    username = "jade";
-    homeDirectory = "/home/jade";
-    sessionPath = ["$HOME/.local/bin"];
-    sessionVariables = {
-      EDITOR = "nvim";
-      GTK_THEME = "Adwaita:dark";
-    }; 
-    stateVersion = "23.05"; 
-  }; 
 }
-

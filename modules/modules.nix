@@ -36,9 +36,9 @@
   ./systems/power/management.nix
   ./systems/power/sleep.nix
   ./systems/services/docker.nix
-  ./systems/packages/browser/zenbrowser.nix
-  ./systems/packages/default.nix
-  ./systems/packages/overlays/overlays.nix
+  ./systems/services/packages/browser/zenbrowser.nix
+  #./systems/services/packages/default.nix
+  ./systems/services/packages/overlays/overlays.nix
   ./systems/users/default.nix
 
   ### Tools

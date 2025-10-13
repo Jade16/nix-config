@@ -17,21 +17,21 @@ in
           default = false;
           type = types.bool;
           description = ''
-            Trust all users 
+            trust all users 
           '';
         };
         users = mkOption {
           default = [ ];
-          type = lib.types.nonEmptyListOf lib.types.str;
+          type = types.listOf types.str;
           description = ''
-            Trusted users list 
+            trusted users list 
           '';
         };
       };
       github-api-path = mkOption {
         type = types.path;
         description = ''
-          Path for github-api file for nix
+          path for github-api file for nix
         '';
       };
     };
@@ -39,21 +39,20 @@ in
 
   config = {
     nix.settings.trusted-users =
-      if cfg.trust.all then builtins.attrNames config.users.users else cfg.trust.users;
+      if cfg.trust.all then builtins.attrnames config.users.users else cfg.trust.users;
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
     ];
-    # daqui pra baixo esta ok
-    # Gpg agent
-    services.gpg-agent = {
-      enable = true;
-      #pinentryPackage = pkgs.pinentry-qt;
-      pinentry.package = pkgs.pinentry-gtk2; 
-      defaultCacheTtl = 600;
-
-      enableSshSupport = true;
-      defaultCacheTtlSsh = 600;
-    };  
+    
+    home-manager.users.jade = {
+      services.gpg-agent = {
+        enable = true;
+        pinentryPackage = pkgs.pinentry-gtk2; # <--- CORRIGIDO
+        defaultCacheTtl = 600;                # <--- CORRIGIDO
+        enableSshSupport = true;              # <--- CORRIGIDO
+        defaultCacheTtlSsh = 600;             # <--- CORRIGIDO
+      };  
+    };
   };
 }
