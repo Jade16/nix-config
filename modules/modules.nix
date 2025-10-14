@@ -18,7 +18,7 @@
 
   ./config/systems/desktop/autologin/default.nix
   ./config/systems/desktop/autologin/default.nix
-  ./config/systems/desktop/plasma6/default.nix 
+  #./config/systems/desktop/plasma6/default.nix 
   ./config/systems/desktop/rofi/default.nix
   ./config/systems/desktop/services-user/cliphist/default.nix
   ./config/systems/desktop/services-user/dunst/default.nix

@@ -7,19 +7,36 @@
 
 with lib;
 let
-  cfg = config.systems.network;
+  cfg = config.systems.network.default;
 in
 {
-  options = {
-   systems.network = {
-      enable = true; # Ativa o módulo de rede inteiro
-      firewall = {
-        enable = true; # Ativa o firewall
-        tcp-ports = [ 80 443 ]; # Exemplo: abrir portas para um servidor web
-        udp-ports = [ 51820 ]; # Exemplo: abrir porta para WireGuard
+ options = {
+    systems.network = {
+      enable = mkOption {
+        type = types.bool;
+        default = false; # Desligado por padrão
+        description = "Enables network module (hostname, networkmanager).";
       };
-    }; 
-  };
+
+      firewall = {
+        enable = mkOption {
+          type = types.bool;
+          default = false; # Desligado por padrão
+          description = "Enables firewall.";
+        };
+        tcp-ports = mkOption {
+          type = types.listOf types.port;
+          default = []; # Lista vazia por padrão
+          description = "List of allowed TCP ports.";
+        };
+        udp-ports = mkOption {
+          type = types.listOf types.port;
+          default = []; # Lista vazia por padrão
+          description = "List of allowed UDP ports.";
+        };
+      };
+    };
+  }; 
 
   config = mkIf cfg.enable {
     networking = {
