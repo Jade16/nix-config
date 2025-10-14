@@ -11,7 +11,5 @@
 
   xdg.enable = true;
 
-  imports = [ #importar apenas os arquivos de configuracao do home manager
-    ../../../modules-home.nix  
-  ];
+  imports = (import ../../../modules-home.nix);
 }

@@ -1,7 +1,7 @@
 [
 
   ### Systems
-  ./home/systems/default/hyprland.default.nix 
+  #./home/systems/default/hyprland.default.nix 
   ./home/systems/desktop/rofi/default.nix
   ./home/systems/desktop/services-user/cliphist/default.nix
   ./home/systems/desktop/services-user/dunst/default.nix

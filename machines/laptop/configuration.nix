@@ -19,10 +19,10 @@
   tools = {
     development.git.enable = true;
     terminal = {
-      enable = true;
+      #terminal.enable = true;
       kitty.enable = true;
       nvim.enable = true;
-      zsh.enable = true; # CORRIGIDO: removido um '.zsh' extra
+      zsh.zsh.enable = true; # CORRIGIDO: removido um '.zsh' extra
     };
   };
 
@@ -34,7 +34,7 @@
     };
     scanner.enable = false;
     # CORRIGIDO: Usando o módulo de gráficos Intel que criamos
-    graphics.intel.enable = true;
+    screen.enable = true;
   };
 
   systems = {
@@ -50,8 +50,8 @@
     };
     desktop = {
       autologin.enable = false;
-      hyprland.enable = false;
-      plasma6.enable = false;
+      #hyprland.enable = false;
+      #plasma6.enable = false;
       rofi.enable = true;
       services-user = {
         cliphist.enable = true;
@@ -65,7 +65,7 @@
     kernel.zen.enable = true;
     localization.brazil.enable = true;
     network = {
-      main.enable = true; # CORRIGIDO: 'default' -> 'main'
+      enable = true; # CORRIGIDO: 'default' -> 'main'
       vpn.enable = true;
       # Configuração do firewall (exemplo)
       firewall = {

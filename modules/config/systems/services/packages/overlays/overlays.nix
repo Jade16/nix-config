@@ -35,7 +35,7 @@ with lib;
     in
     {
       nixpkgs.overlays = [
-        additions
+        #additions
         modifications
         unstable-packages
       ];
