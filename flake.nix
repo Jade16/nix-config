@@ -44,14 +44,14 @@
         
         modules = [
           # 1. Configuração específica do host (caminho corrigido)
-          ./machines/laptop/configuration.nix
-
+          ./machines/laptop/configuration.nix 
+          
           # 2. Módulos de flakes externos que você usa
           home-manager.nixosModules.home-manager
           nixvim.nixosModules.nixvim
           agenix.nixosModules.default
 
-        ] ++ (import ./modules/modules.nix); # 3. Importa e concatena TODOS os seus módulos da pasta /modules
+        ] ++ (import ./modules/modules.nix);
       };
     };
 
