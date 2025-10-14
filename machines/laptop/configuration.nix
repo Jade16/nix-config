@@ -85,7 +85,7 @@
       docker.enable = true;
       packages = {
         # CORRIGIDO: Caminho da opção de overlays
-        overlays.enable = true; 
+        #overlays.enable = true; 
       };
     };
   };

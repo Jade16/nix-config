@@ -1,12 +1,14 @@
-# Em .../overlays/overlays.nix
+# modules/config/systems/services/packages/overlays/overlays.nix
 
-{ lib, config, inputs, ... }:
+{ lib, config, inputs, pkgs, ... }:
 
 with lib;
-# O bloco 'let' foi removido.
+let
+  cfg = config.systems.services.packages.overlays;
+in
 {
   # ====================================================================
-  # PARTE 1: Declarar a opção (isso já estava correto)
+  # PARTE 1: Declarar a opção (continua perfeita)
   # ====================================================================
   options.systems.services.packages.overlays.enable = mkOption {
     type = types.bool;
@@ -15,47 +17,28 @@ with lib;
   };
 
   # ====================================================================
-  # PARTE 2: Usar a opção (com o caminho completo e correto)
+  # PARTE 2: Usar a opção (agora unificada e correta)
   # ====================================================================
-  config = mkIf config.systems.services.packages.overlays.enable (
-    let
-      # Os overlays continuam como variáveis locais, isso está correto.
-      additions = final: _prev: import ../pkgs final.pkgs;
+  config = mkIf cfg.enable {
 
-      modifications = final: prev: {
-        # example = prev.example.overrideAttrs (oldAttrs: rec { ... });
-      };
-
-      unstable-packages = final: _prev: {
+    # A única forma de modificar pacotes será através desta lista
+    nixpkgs.overlays = [
+    # Overlay para pacotes instáveis
+      (final: prev: {
         unstable = import inputs.nixpkgs-unstable {
-          system = final.system;
+          inherit system; 
           config.allowUnfree = true;
         };
-      };
-    in
-    {
-      nixpkgs.overlays = [
-        #additions
-        modifications
-        unstable-packages
-      ];
+      })
+    ];
 
-      nixpkgs.config = {
-        allowUnfree = true;
-        allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-          "sqldeveloper"
-        ];
-        permittedInsecurePackages = [
-          "oraclejdk-8u281"
-        ];
-        packageOverrides = pkgs: rec {
-          umlet = pkgs.umlet.override {
-            jre = pkgs.oraclejre8;
-            jdk = pkgs.oraclejdk8;
-          };
-        };
-        cudaSupport = true;
-      };
-    }
-  );
+    # O 'nixpkgs.config' agora fica muito mais simples e não tem mais 'packageOverrides'
+    nixpkgs.config = {
+      allowUnfree = true;
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "sqldeveloper" ];
+      permittedInsecurePackages = [ "oraclejdk-8u281" ];
+      cudaSupport = true;
+      # <<<<<<< BLOCO 'packageOverrides' COMPLETAMENTE REMOVIDO DAQUI <<<<<<<
+    };
+  };
 }
