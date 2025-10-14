@@ -11,7 +11,7 @@
 
 {
   imports = [
-    #../../modules/modules.nix
+    ../../modules/modules.nix
     ./hardware-configuration.nix
   ];
 
@@ -39,6 +39,7 @@
       };
     };
   };
+
   hardware = {
     keyboard = {
       br-abnt2.enable = true;
@@ -53,6 +54,7 @@
       enable = true;
     };
   };
+
   systems = {
     audio = {
       pipewire.enable = true;
@@ -66,8 +68,14 @@
       enable = true;
     };
     desktop = {
+      autologin = {
+        enable = false;
+      };
+      hyprland = {
+        enable = false;
+      };
       plasma6 = {
-        enable = true;
+        enable = false;
       };
       rofi = {
         enable = true;
@@ -105,7 +113,7 @@
       vpn.enable = true;
     };
     nix = {
-      trust.all = true;
+      trust.all = false;
       github-api-path = config.age.secrets.github-api.path;
     };
     power = {
@@ -115,9 +123,7 @@
     services = {
       docker.enable = true;
       packages = {
-        browser = {
-          zenbrowser.enable = true;
-        };
+        zenbrowser.enable = true; 
         #enable = true;
         overlays = {
           enable = false;
