@@ -86,10 +86,10 @@
       packages = {
         # CORRIGIDO: Caminho da opção de overlays
         #overlays.enable = true; 
+        browser = {
+          zenbrowser.enable = true;
+        };
       };
     };
   };
-
-  # CORRIGIDO: Caminho da opção do zenbrowser
-  programs.zenbrowser.enable = true;
 }

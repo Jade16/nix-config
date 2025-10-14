@@ -38,7 +38,7 @@
   ./config/systems/power/sleep.nix
   ./config/systems/services/docker.nix
   ./config/systems/services/packages/browser/zenbrowser.nix
-  ./config/systems/services/packages/default.nix
+  #./config/systems/services/packages/default.nix
   #./config/systems/services/packages/overlays/overlays.nix
   ./config/systems/users/default.nix
 
