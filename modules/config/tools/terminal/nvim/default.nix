@@ -12,17 +12,15 @@ in
 {
   options = {
     tools.terminal.nvim = {
-      enable = mkOption {
+      enable = lib.mkOption {
         default = false;
-        type = types.bool;
-        description = ''
-          Enables nvim editor 
-        '';
+        type = lib.types.bool;
+        description = "Enables Neovim configuration and sets it as the default editor.";
       };
     };
   };
 
-  config = mkIf cfg.enable {
-    environment.variables.EDITOR = "nvim";
-  };
+  #config = mkIf cfg.enable {
+    #environment.variables.EDITOR = "nvim";
+  #};
 }

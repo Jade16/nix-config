@@ -54,6 +54,6 @@ lib.mkIf config.systems.desktop.waybar.enable {
     };
 
     # Você também pode adicionar um CSS customizado para o estilo
-    style = import ./style.css; 
+    style = builtins.readFile ./style.css;
   };
 }

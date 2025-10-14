@@ -5,7 +5,13 @@
   ...
 }:
 
-{
+# Ativa a configuração somente se o interruptor estiver ligado
+lib.mkIf config.programs.nvim.enable {
+
+  # Define o Neovim como editor padrão para o usuário
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
   programs.nixvim = {
     enable = true;
     opts = {

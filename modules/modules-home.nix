@@ -6,7 +6,7 @@
   ./home/systems/desktop/services-user/cliphist/default.nix
   ./home/systems/desktop/services-user/dunst/default.nix
   ./home/systems/desktop/services-user/wlsunset/default.nix
-  ./home/systems/desktop/wallpapers/bg.png  
+  #./home/systems/desktop/wallpapers/bg.png  
   ./home/systems/desktop/waybar/default.nix
   ./home/systems/desktop/waybar/style.css
   ./home/systems/desktop/waybar/custom-modules/karma-battery
