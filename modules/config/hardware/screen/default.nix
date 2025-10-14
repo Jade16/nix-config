@@ -18,7 +18,7 @@ in
         description = ''
           Enables Intel graphics  
         '';
-      }
+      };
     };
   };
 

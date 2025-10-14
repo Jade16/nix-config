@@ -4,7 +4,11 @@ let
 in
 {
   options.systems.desktop.autologin = {
-    enable = mkOption { ... };
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enables autologin using greetd.";
+    };
     user = mkOption {         # <--- Nova opção para o nome de usuário
       type = types.str;
       default = "jade";        # <--- O padrão continua sendo "jade"
@@ -16,7 +20,7 @@ in
     services.greetd = {
       # ...
       settings.initial_session = {
-        command = ...;
+        command = ''${pkgs.zsh}/bin/zsh -c "${pkgs.sway}/bin/sway"'';
         user = cfg.user;       # <--- Usando a nova opção aqui
       };
       # ...
