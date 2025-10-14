@@ -1,4 +1,7 @@
 # Exemplo de como o módulo poderia ser ainda mais flexível (NÃO PRECISA MUDAR NADA AGORA)
+{ config, lib, pkgs, ... }: # <--- A LINHA MÁGICA QUE ESTAVA FALTANDO
+
+with lib;
 let
   cfg = config.systems.desktop.autologin;
 in

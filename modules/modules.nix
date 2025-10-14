@@ -17,7 +17,7 @@
   ./config/systems/boot/grub.nix
 
   ./config/systems/desktop/autologin/default.nix
-  ./config/systems/default/hyprland.default.nix
+  ./config/systems/desktop/autologin/default.nix
   ./config/systems/desktop/plasma6/default.nix 
   ./config/systems/desktop/rofi/default.nix
   ./config/systems/desktop/services-user/cliphist/default.nix
