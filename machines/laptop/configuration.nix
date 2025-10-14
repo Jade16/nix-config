@@ -1,5 +1,3 @@
-# machines/laptop/configuration.nix
-
 { lib, config, pkgs, ... }:
 
 {
@@ -83,13 +81,13 @@
     };
     services = {
       docker.enable = true;
-      packages = {
+      #packages = {
         # CORRIGIDO: Caminho da opção de overlays
         #overlays.enable = true; 
-        browser = {
-          zenbrowser.enable = true;
-        };
-      };
+        #browser = {
+          #zenbrowser.enable = true;
+        #};
+      #};
     };
   };
 }

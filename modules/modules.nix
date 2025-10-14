@@ -1,7 +1,5 @@
-# mapeamento de todos os arquivos dos modulos
-#{ config, lib, pkgs, ... }:
-
-[
+{
+imports = [
   ### Hardware
   ./config/hardware/keyboard/br-abnt2.nix
   ./config/hardware/printer/default.nix
@@ -37,7 +35,7 @@
   ./config/systems/power/management.nix
   ./config/systems/power/sleep.nix
   ./config/systems/services/docker.nix
-  ./config/systems/services/packages/browser/zenbrowser.nix
+  #./config/systems/services/packages/browser/zenbrowser.nix
   #./config/systems/services/packages/default.nix
   #./config/systems/services/packages/overlays/overlays.nix
   ./config/systems/users/default.nix
@@ -48,5 +46,6 @@
   ./config/tools/terminal/kitty/default.nix
   ./config/tools/terminal/nvim/default.nix
   ./config/tools/terminal/zsh/zsh.nix
-  ]
+  ];
+  }
   

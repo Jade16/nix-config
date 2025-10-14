@@ -11,5 +11,5 @@
 
   xdg.enable = true;
 
-  imports = (import ../../../modules-home.nix);
+  imports = (import ../../../modules-home.nix).imports;
 }

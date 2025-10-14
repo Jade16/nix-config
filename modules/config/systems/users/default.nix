@@ -14,7 +14,6 @@
       "video"
       "libvirtd" # Para virtualização
       "wireshark"
-      # "docker" # Lembre-se: só adicione este se NÃO estiver usando o modo rootless do Docker
     ];
     shell = pkgs.zsh;
   };
