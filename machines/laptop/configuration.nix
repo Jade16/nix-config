@@ -4,6 +4,7 @@
   imports = [
     # A importação do modules.nix foi corretamente removida.
     ./hardware-configuration.nix
+    ../../../modules/config/hardware/keyboard/br-abnt2.nix 
   ];
 
   # O bloco 'networking' do topo foi removido para não duplicar.
@@ -25,7 +26,7 @@
   };
 
   hardware = {
-    keyboard.br-abnt2.enable = true;
+    #keyboard.br-abnt2.enable = true;
     printer = {
       enable = true;
       deskjet.enable = true; # Assumindo que você quer a impressora deskjet
