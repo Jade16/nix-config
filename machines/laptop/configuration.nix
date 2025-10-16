@@ -2,18 +2,11 @@
 
 {
   imports = [
-    # A importação do modules.nix foi corretamente removida.
+    ../../modules/modules.nix 
     ./hardware-configuration.nix
-    ../../../modules/config/hardware/keyboard/br-abnt2.nix 
   ];
 
-  # O bloco 'networking' do topo foi removido para não duplicar.
-
   system.stateVersion = "23.05"; # NAO MUDAR!
-
-  # ===============================================================
-  # ATIVANDO OS INTERRUPTORES DOS SEUS MÓDULOS CUSTOMIZADOS
-  # ===============================================================
 
   tools = {
     development.git.enable = true;
@@ -21,7 +14,7 @@
       #terminal.enable = true;
       kitty.enable = true;
       nvim.enable = true;
-      zsh.zsh.enable = true; # CORRIGIDO: removido um '.zsh' extra
+      zsh.enable = true; # CORRIGIDO: removido um '.zsh' extra
     };
   };
 

@@ -8,7 +8,7 @@
 
 with lib;
 let
-  cfg = config.tools.terminal.zsh.zsh;
+  cfg = config.tools.terminal.zsh;
 in
 {
   options = {
