@@ -19,13 +19,13 @@
   };
 
   # --- FUNÇÃO 2: Fazer a ponte para o Home Manager ---
-  home-manager = {
+  #home-manager = {
     # Configurações globais da integração
-    useGlobalPkgs = true;
-    useUserPackages = true;
+    #useGlobalPkgs = true;
+    #useUserPackages = true;
 
     # A linha mais importante de todas:
     # Diz ao NixOS para usar o arquivo 'home.nix' para configurar o usuário 'jade'
-    users.jade = import ../../../home/systems/users/default.nix;
-  };
+    #users.jade = import ../../../home/systems/users/default.nix;
+  #};
 }

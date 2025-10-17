@@ -14,9 +14,11 @@
       #terminal.enable = true;
       kitty.enable = true;
       nvim.enable = true;
-      zsh.enable = true; # CORRIGIDO: removido um '.zsh' extra
+      #zsh.enable = true; 
     };
   };
+  #programs.zsh.enable = true;
+   
 
   hardware = {
     #keyboard.br-abnt2.enable = true;
@@ -84,4 +86,15 @@
       #};
     };
   };
+
+  home-manager = {
+    # Configurações globais da integração
+    useGlobalPkgs = true;
+    useUserPackages = true;
+
+    # A linha mais importante de todas:
+    # Diz ao NixOS para usar o arquivo 'home.nix' para configurar o usuário 'jade'
+    #users.jade = import ../../../home/systems/users/default.nix;
+    users.jade = import ../../modules/home/systems/users/default.nix;
+  }; 
 }

@@ -12,7 +12,7 @@ let
 in
 {
   options = {
-    tools.terminal.zsh.zsh = {
+    tools.terminal.zsh = {
       enable = mkOption {
         default = false;
         type = types.bool;

@@ -35,7 +35,10 @@
   # Aplica o layout ABNT2 diretamente
   console.keyMap = "br-abnt2";
 
-  # Layout gráfico (X11/Wayland)
-  i18n.inputLocale = "pt_BR.UTF-8";
+  # Layout gráfico (para X11/Wayland)
+  services.xserver = {
+    layout = "br";
+    xkbVariant = "abnt2";
+  }; 
 }
 
