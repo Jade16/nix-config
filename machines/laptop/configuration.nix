@@ -15,7 +15,8 @@
     ../../modules/config/systems/bluetooth/default.nix
     ../../modules/config/systems/boot/default.nix
     ../../modules/config/systems/boot/efi.nix
-    ../../modules/config/systems/boot/grub.nix  
+    ../../modules/config/systems/boot/grub.nix 
+    ../../modules/config/systems/desktop/hyprland/default.nix
     ../../modules/config/systems/font/nerd-font.nix
     #../../modules/config/systems/gpu/nvidia.nix
     ../../modules/config/systems/kernel/zen.nix
@@ -45,5 +46,17 @@
     # Define o usuário e importa as configurações do home.nix
     users.jade = import ../../modules/home/systems/users/default.nix; 
   };
+  programs.zsh.enable = true;
 
+  fonts.packages = with pkgs; [
+    nerdfonts
+    noto-fonts
+    noto-fonts-emoji
+    font-awesome
+    jetbrains-mono
+  ];
+
+  environment.systemPackages = with pkgs; [
+    papirus-icon-theme
+  ];
 }

@@ -1,32 +1,47 @@
-# modules/config/desktop/hyprland-nixos.nix
-
 { config, lib, pkgs, ... }:
 
-
 {
-  # Este módulo depende dos módulos de rofi, dunst e waybar,
-  # então ele os importa e os ativa quando ele mesmo é ativado.
   imports = [
-    #../rofi/default.nix
-    #../dunst/default.nix
+    ../../../../home/systems/desktop/waybar/default.nix
+    ../../../../home/systems/desktop/dunst/default.nix
     ../../../../home/systems/desktop/rofi/default.nix
-    ../waybar/default.nix
   ];
-  programs.hyprland.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  }; 
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    XDG_SESSION_TYPE = "wayland";
+  };
+
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland --greeting 'Welcome aboard captain!' --remember";
-        user = "greeter";
+        # inicia Hyprland com o seu usuário
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland --greeting 'Welcome aboard, Captain Jade!' --remember";
+        user = "jade";
       };
     };
   };
 
+  # exemplo de ativação de outros módulos do desktop
   systems.desktop = {
     dunst.enable = true;
     waybar.enable = true;
     rofi.enable = true;
   };
 }
+

@@ -18,11 +18,11 @@
     ../../systems/desktop/waybar/default.nix
     ../../systems/security/gpg.nix
     ../../systems/services/packages/default.nix
-    ../../systems/services/packages/browser/zenbrowser.nix
+    #../../systems/services/packages/browser/zenbrowser.nix
     ../../tools/development/git.nix
     ../../tools/terminal/default.nix
     ../../tools/terminal/kitty/default.nix
-    ../../tools/terminal/nvim/default.nix
+    #../../tools/terminal/nvim/default.nix
     ../../tools/terminal/zsh/zsh.nix
   ];
 }

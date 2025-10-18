@@ -1,7 +1,6 @@
 { config, lib, ... }:
 
-lib.mkIf config.tools.development.git.enable {
-
+{
   programs.git = {
     enable = true;
     extraConfig = {
@@ -14,5 +13,4 @@ lib.mkIf config.tools.development.git.enable {
       };
     };
   };
-
 }

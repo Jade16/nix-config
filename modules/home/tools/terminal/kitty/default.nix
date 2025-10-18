@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
-lib.mkIf config.tools.terminal.kitty.enable {
-
+{
   programs.kitty = {
     enable = true;
     # CORREÇÃO: 'themeFile' trocado por 'theme'
@@ -17,5 +16,4 @@ lib.mkIf config.tools.terminal.kitty.enable {
       cursor_shape = "block";
     };
   };
-
 }

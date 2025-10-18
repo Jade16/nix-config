@@ -1,14 +1,14 @@
 { config, lib, pkgs, ... }:
 
-lib.mkIf config.programs.neovim.enable {
-
-
-  # Define o Neovim como editor padrão para o usuário
+{
+  # Define o Neovim como editor padrão
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
   programs.neovim = {
     enable = true;
+
     opts = {
       number = true;
       relativenumber = true;
@@ -25,7 +25,9 @@ lib.mkIf config.programs.neovim.enable {
       foldlevelstart = 10;
     };
 
-    globals = {mapleader = " ";};
+    extraConfig = ''
+      let mapleader = " "
+    '';
 
     keymaps = [
     {
@@ -233,16 +235,7 @@ lib.mkIf config.programs.neovim.enable {
       options.noremap = true;
       options.desc = "LSP rename";
     }
-    ];
-
-    colorschemes.catppuccin = {
-      enable = true;
-        settings = {
-          term_colors = true;
-          flavour = "mocha";
-          transparent_background = true;
-        };
-    };
+    ];     
 
     plugins.web-devicons.enable = true;
 
@@ -256,14 +249,15 @@ lib.mkIf config.programs.neovim.enable {
       gitsigns.enable = true;
       nvim-tree.enable = true;
       luasnip.enable = true;
+
       treesitter-context = {
         enable = true;
         settings.on_attach = ''
           function(buf)
             vim.api.nvim_set_hl(
               0,
-                'TreesitterContextBottom',
-                { underline=true, fg="darkgrey", bg="none" }
+              'TreesitterContextBottom',
+              { underline=true, fg="darkgrey", bg="none" }
             )
             vim.api.nvim_set_hl(
               0,
@@ -274,24 +268,16 @@ lib.mkIf config.programs.neovim.enable {
           end
         '';
       };
+
       treesitter = {
         enable = true;
-          settings.ensure_installed = [
-            "c"
-            "cpp"
-            "go"
-            "gomod"
-            "gosum"
-            "python"
-            "lua"
-            "nix"
-            "bash"
-            "dockerfile"
-            "markdown"
-            "json"
-            "yaml"
-          ];
+        settings.ensure_installed = [
+          "c" "cpp" "go" "gomod" "gosum"
+          "python" "lua" "nix" "bash"
+          "dockerfile" "markdown" "json" "yaml"
+        ];
       };
+
       lsp = {
         enable = true;
         servers = {
@@ -299,7 +285,6 @@ lib.mkIf config.programs.neovim.enable {
           ruff.enable = true;
           pyright.enable = true;
         };
-
         onAttach = ''
           vim.api.nvim_set_hl(
             0,
@@ -308,8 +293,7 @@ lib.mkIf config.programs.neovim.enable {
           )
         '';
       };
-      # java
-      #nvim-jdtls = {
+
       jdtls = {
         enable = true;
         settings.settings = { 
@@ -320,9 +304,8 @@ lib.mkIf config.programs.neovim.enable {
             "${config.xdg.cacheHome}/jdtls/workspace" 
           ];
         };
-        #data = "${config.xdg.cacheHome}/jdtls/workspace";
-        #configuration = "${config.xdg.cacheHome}/jdtls/config";
       };
+
       copilot-chat.enable = true;
       copilot-cmp.enable = true;
       copilot-lua = {
@@ -332,6 +315,7 @@ lib.mkIf config.programs.neovim.enable {
           suggestion.enabled = false;
         };
       };
+
       cmp = {
         enable = true;
         settings = {
@@ -345,59 +329,10 @@ lib.mkIf config.programs.neovim.enable {
 
           mapping = {
             "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<S-Tab>" = ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                elseif luasnip == nil then
-                  fallback()
-                elseif luasnip.expandable() then
-                  luasnip.expand()
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
-                elseif check_backspace() then
-                  fallback()
-                else
-                  fallback()
-                end
-              end
-            '';
-            "<Tab>" = ''
-              function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                elseif luasnip == nil then
-                  fallback()
-                elseif luasnip.expandable() then
-                  luasnip.expand()
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
-                elseif check_backspace() then
-                  fallback()
-                else
-                  fallback()
-                end
-              end
-            '';
           };
-
-          snippet.expand = ''
-            function(args)
-              require('luasnip').lsp_expand(args.body)
-            end
-          '';
         };
       };
     };
-
-    # desabilita do copilot por padrao
-    #autoCmd = [
-    #{
-      #command = "Copilot disable";
-      #event = [
-        #"VimEnter"
-      #];
-    #} 
-    #];
   };
 }
+

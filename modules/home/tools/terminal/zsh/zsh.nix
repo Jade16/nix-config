@@ -9,7 +9,7 @@
   xdg.configFile."zsh-custom/themes/lucasegp.zsh-theme".source = 
     ./lucasegp.zsh-theme; 
     
-  programs.zsh = {
+  programs.zsh = { 
     enable = true;
     syntaxHighlighting.enable = true;
     syntaxHighlighting.highlighters = ["line" "brackets" "main" "regexp"];

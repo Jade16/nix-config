@@ -7,7 +7,7 @@
       devices = [ "nodev" ];
       efiSupport = true;
       useOSProber = true;
-      efiInstallAsRemovable = true;
+      efiInstallAsRemovable = false;
       fsIdentifier = "uuid";
       extraEntries = ''
       menuentry "Reboot"{ reboot }
