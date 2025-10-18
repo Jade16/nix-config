@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ../../../../home/systems/desktop/waybar/default.nix
-    ../../../../home/systems/desktop/dunst/default.nix
-    ../../../../home/systems/desktop/rofi/default.nix
+    #../../../../home/systems/desktop/waybar/default.nix
+    #../../../../home/systems/desktop/dunst/default.nix
+    #../../../../home/systems/desktop/rofi/default.nix
   ];
 
   programs.hyprland = {
