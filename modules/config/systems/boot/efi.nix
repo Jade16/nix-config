@@ -24,7 +24,7 @@ in
     boot = {
       loader = {
         efi = {
-          efiSysMountPoint = cfg.mount-point;
+          #efiSysMountPoint = cfg.mount-point;
           canTouchEfiVariables = true;
         };
       };

@@ -14,8 +14,8 @@
     ../../modules/config/systems/audio/pipewire.nix
     ../../modules/config/systems/bluetooth/default.nix
     ../../modules/config/systems/boot/default.nix
-    ../../modules/config/systems/boot/efi.nix
-    ../../modules/config/systems/boot/grub.nix 
+    #../../modules/config/systems/boot/efi.nix
+    #../../modules/config/systems/boot/grub.nix 
     ../../modules/config/systems/desktop/hyprland/default.nix
     ../../modules/config/systems/font/nerd-font.nix
     #../../modules/config/systems/gpu/nvidia.nix

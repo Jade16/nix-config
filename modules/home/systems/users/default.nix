@@ -13,7 +13,8 @@
   imports = [
     ../../systems/desktop/rofi/default.nix
     ../../systems/desktop/dunst/default.nix
-    ../../systems/desktop/waybar/default.nix 
+    ../../systems/desktop/waybar/default.nix
+    ../../systems/desktop/hyprland/default.nix
     ../../systems/desktop/services-user/cliphist/default.nix
     ../../systems/desktop/services-user/wlsunset/default.nix
     ../../systems/security/gpg.nix

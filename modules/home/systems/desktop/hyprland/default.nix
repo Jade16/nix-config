@@ -24,17 +24,15 @@
     settings = {
       "$mod" = "SUPER";
       input = {
-        kb_layout = "us";
-        kb_variant = "intl";
+        kb_layout = "br";
+        kb_variant = "abnt2";
       };
       exec-once = [
         "waybar"
         "swww-daemon"
       ];
-      # CORREÇÃO DE CAMINHO: Ajuste o número de '../' conforme necessário
-      # para chegar na raiz do seu projeto a partir deste arquivo.
       exec = [
-        "swww img ${../wallpapers/bg.png}"
+        "swww img ${./../wallpapers/bg.png}"
       ];
       "general:gaps_out" = "2";
       "general:gaps_in" = "2";
@@ -78,6 +76,12 @@
         ", Print, exec, grimblast copy output"
         "$mod, P, exec, grimblast copy output"
         "$mod ALT, P, exec, grimblast copy area"
+        
+        "$mod, Return, exec, kitty"
+        "$mod, D, exec, rofi -show drun"
+        "$mod, Q, killactive,"
+        "$mod, M, exit,"
+        "$mod SHIFT, R, exec, hyprctl reload" 
       ]
       ++ (
         builtins.concatLists (
@@ -92,9 +96,9 @@
             in
             [
               "$mod, ${ws}, workspace, ${toString (x + 1)}"
-              "$mod, ${ws}, exec, swww img ${../../../wallpapers}/rw-region-${toString (x + 1)}.png --transition-type right --transition-duration 0 --transition-step 255"
+              "$mod, ${ws}, exec, swww img ${./../wallpapers}/rw-region-${toString (x + 1)}.png --transition-type right --transition-duration 0 --transition-step 255"
               "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-              "$mod SHIFT, ${ws}, exec, swww img ${../../../wallpapers}/rw-region-${toString (x + 1)}.png --transition-type right --transition-duration 0 --transition-step 255"
+              "$mod SHIFT, ${ws}, exec, swww img ${./../wallpapers}/rw-region-${toString (x + 1)}.png --transition-type right --transition-duration 0 --transition-step 255"
             ]
           ) 10
         )
