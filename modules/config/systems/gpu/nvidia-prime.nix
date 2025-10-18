@@ -1,11 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
 
-with lib;
+{ config, lib, pkgs, ... }:
 
 {
   imports = [ ./nvidia.nix ];
@@ -34,7 +28,7 @@ with lib;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = {
     systems.gpu.nvidia.enable = true;
     hardware.nvidia.prime = {
       sync.enable = true;

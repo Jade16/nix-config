@@ -1,18 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
-# Ativa a configuração somente se o interruptor estiver ligado
-lib.mkIf config.programs.nvim.enable {
+lib.mkIf config.programs.neovim.enable {
+
 
   # Define o Neovim como editor padrão para o usuário
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-  programs.nixvim = {
+  programs.neovim = {
     enable = true;
     opts = {
       number = true;
@@ -396,13 +391,13 @@ lib.mkIf config.programs.nvim.enable {
     };
 
     # desabilita do copilot por padrao
-    autoCmd = [
-    {
-      command = "Copilot disable";
-      event = [
-        "VimEnter"
-      ];
-    } 
-    ];
+    #autoCmd = [
+    #{
+      #command = "Copilot disable";
+      #event = [
+        #"VimEnter"
+      #];
+    #} 
+    #];
   };
 }

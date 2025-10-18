@@ -16,9 +16,6 @@
     ../../modules/config/systems/boot/default.nix
     ../../modules/config/systems/boot/efi.nix
     ../../modules/config/systems/boot/grub.nix  
-    ../../modules/config/systems/desktop/services-user/cliphist/default.nix
-    ../../modules/config/systems/desktop/sway/default.nix
-    ../../modules/config/systems/desktop/waybar/default.nix
     ../../modules/config/systems/font/nerd-font.nix
     #../../modules/config/systems/gpu/nvidia.nix
     ../../modules/config/systems/kernel/zen.nix
@@ -46,7 +43,7 @@
     useUserPackages = true;
 
     # Define o usuário e importa as configurações do home.nix
-    users.jade = import ../../home/jade/home.nix;
+    users.jade = import ../../modules/home/systems/users/default.nix; 
   };
 
 }

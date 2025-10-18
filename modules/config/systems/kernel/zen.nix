@@ -1,11 +1,5 @@
+{  config, lib, pkgs, ... }:
+
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
-  config = mkIf cfg.enable {
-    boot.kernelPackages = pkgs.linuxPackages_zen;
-  };
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 }

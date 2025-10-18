@@ -13,7 +13,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     allowUnfreePredicate = pkg:
-      let name = lib.getName (pkg or { name = ""; });
+      let name = lib.getName (pkg // { name = ""; });
       in builtins.elem name [ "sqldeveloper" ];
     permittedInsecurePackages = [ "oraclejdk-8u281" ];
     cudaSupport = true;

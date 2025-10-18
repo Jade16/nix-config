@@ -1,4 +1,3 @@
-# Em modules/config/system/packages.nix
 { pkgs, ... }:
 
 {
@@ -7,15 +6,10 @@
     git
     os-prober
     ntfs3g
-    # ... etc
 
     # Pacotes movidos do terminal.nix
     jq
     unzip
     zip
-    # zsh (já deve estar aqui)
-    # neovim (já deve estar aqui)
   ];
-
-  # ... outras configs de pacotes, como VirtualBox
 }

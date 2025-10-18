@@ -2,7 +2,7 @@
   description = "NixOS + Home Manager modular setup";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -16,7 +16,7 @@
 
         modules = [
           ./machines/laptop/configuration.nix
-          ./modules/modules.nix
+          #./modules/modules.nix
 
           # integração home-manager
           home-manager.nixosModules.home-manager {

@@ -1,24 +1,17 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
+{ config, lib, pkgs, ... }:
 
-  config = mkIf cfg.enable {
-    boot = {
-      loader = {
-        systemd-boot = {
-          enable = false;
-        }; 
+{
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = false;
       }; 
+    }; 
 
-      kernelParams = [
-        "pci=nommconf"
-        "pcie_aspm=off"   
-        "nvme_core.default_ps_max_latency_us=0"   
-      ];
-    };     
-  };
+    kernelParams = [
+      "pci=nommconf"
+      "pcie_aspm=off"   
+      "nvme_core.default_ps_max_latency_us=0"   
+    ];
+  };     
 }
