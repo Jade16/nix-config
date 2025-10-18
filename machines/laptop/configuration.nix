@@ -49,11 +49,10 @@
   programs.zsh.enable = true;
 
   fonts.packages = with pkgs; [
-    nerdfonts
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
     noto-fonts
     noto-fonts-emoji
-    font-awesome
-    jetbrains-mono
   ];
 
   environment.systemPackages = with pkgs; [

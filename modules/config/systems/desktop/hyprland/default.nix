@@ -38,10 +38,10 @@
   };
 
   # exemplo de ativação de outros módulos do desktop
-  systems.desktop = {
-    dunst.enable = true;
-    waybar.enable = true;
-    rofi.enable = true;
-  };
+  #systems.desktop = {
+    #dunst.enable = true;
+    #waybar.enable = true;
+    #rofi.enable = true;
+  #};
 }
 
