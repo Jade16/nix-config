@@ -15,9 +15,7 @@ in
       mount-point = mkOption {
         default = "/boot/efi";
         type = types.str;
-        description = ''
-          EFI mount path
-        '';
+        description = "EFI mount path";
       };
     };
   };

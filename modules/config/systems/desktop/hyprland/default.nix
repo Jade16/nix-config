@@ -17,11 +17,8 @@ in
 
   options = {
     systems.desktop.hyprland = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = "Enables the Hyprland desktop environment.";
-      };
+      enable = mkEnableOption "Enables the Hyprland desktop environment.";
+      
     };
   };
 

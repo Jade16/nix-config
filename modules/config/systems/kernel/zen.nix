@@ -11,12 +11,8 @@ let
 in
 {
   options = {
-    systems.kernel.zen.enable = mkOption {
-      default = false;
-      type = types.bool;
-      description = ''
-        Enables the Zen Linux kernel 
-      '';
+    systems.kernel.zen = {
+      enable = mkEnableOption"Enables the Zen Linux kernel";
     };
   };
 

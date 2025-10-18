@@ -12,13 +12,7 @@ in
 {
   options = {
     systems.font.nerd-font = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Adds nerd font 
-        '';
-      };
+      enable = mkEnableOption "Adds nerd font"; 
     };
   };
 

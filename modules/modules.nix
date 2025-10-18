@@ -10,7 +10,6 @@
 
     ### Systems
     ./config/systems/audio/pipewire.nix
-    ./config/systems/bluetooth/default.nix
     ./config/systems/boot/efi.nix
     ./config/systems/boot/default.nix
     ./config/systems/boot/grub.nix

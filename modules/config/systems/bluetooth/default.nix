@@ -5,42 +5,11 @@
   ...
 }:
 
-with lib;
-let
-  cfg = config.bluetooth;
-in
-{
-  #options = {
-    #systems.bluetooth = {
-      #enable = mkOption {
-        #default = false;
-        #type = types.bool;
-        #description = ''
-          #Enables bluetooth
-        #'';
-      #};
-    #};
-  
-  options = {
-    bluetooth = {
-      enable = lib.mkEnableOption ''
-        Enables bluetooth
-      '';
-    };
-  };
-
-
+{   
   config = lib.mkIf cfg.enable {
-    hardware = {
-      bluetooth = {
-        powerOnBoot = true;
-        enable = true;
-      };
-    };
-    services = {
-      blueman = {
-        enable = true;
-      };
-    };
+    
+    services.blueman.enable = true;       # interface gráfica para Bluetooth
+    services.bluetooth.enable = true;     # serviço principal
+    services.bluetooth.powerOnBoot = true; # ligar o Bluetooth no boot
   };
 }

@@ -12,13 +12,7 @@ in
 {
   options = {
     systems.power.management = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables Power Management
-        '';
-      };
+      enable = mkEnableOption "Enables Power Management";
     };
   };
 

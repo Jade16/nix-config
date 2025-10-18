@@ -12,21 +12,12 @@
   {
     options = {
       systems.audio.pipewire = {
-        enable = mkOption {
-          default = false;
-          type = types.bool;
-          description = ''
-            Enable Pipewire
-          '';
-        };
+        enable = mkEnableOption "Audio module"; 
       };
     };
 
     config = mkIf cfg.enable {
       services = {
-        pulseaudio = {
-          enable = false;
-        };
         pipewire = {
           enable = true;
           alsa = {

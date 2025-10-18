@@ -2,101 +2,57 @@
 
 {
   imports = [
-    #../../modules/modules.nix 
+    ./hardware-configuration.nix
+
+    # --- Hardware ---
+    ../../modules/config/hardware/keyboard/br-abnt2.nix
+    ../../modules/config/hardware/printer/default.nix
+    ../../modules/config/hardware/scanner/default.nix
+    ../../modules/config/hardware/screen/default.nix
+
+    # --- Sistemas ---
+    ../../modules/config/systems/audio/pipewire.nix
     ../../modules/config/systems/bluetooth/default.nix
-    #./hardware-configuration.nix
+    ../../modules/config/systems/boot/default.nix
+    ../../modules/config/systems/boot/efi.nix
+    ../../modules/config/systems/boot/grub.nix 
+    ../../modules/config/systems/desktop/services-user/dunst/default.nix
+    ../../modules/config/systems/desktop/services-user/cliphist/default.nix
+    ../../modules/config/systems/desktop/services-user/wlsunset/default.nix
+    ../../modules/config/systems/desktop/sway/default.nix
+    ../../modules/config/systems/desktop/waybar/default.nix
+    ../../modules/config/systems/font/nerd-font.nix
+    #../../modules/config/systems/gpu/nvidia.nix
+    ../../modules/config/systems/kernel/zen.nix
+    ../../modules/config/systems/localization/brazil.nix
+    ../../modules/config/systems/network/default.nix
+    ../../modules/config/systems/nix/default.nix
+    ../../modules/config/systems/power/management.nix
+    ../../modules/config/systems/power/sleep.nix
+    ../../modules/config/systems/services/docker.nix
+    ../../modules/config/systems/services/packages/default.nix
+    ../../modules/config/systems/services/packages/overlays/overlays.nix
+
+    # --- Usuários ---
+    ../../modules/config/systems/users/default.nix
+
+    # --- Tools ---
+    ../../modules/config/tools/terminal/default.nix
+    ../../modules/config/tools/terminal/zsh/default.nix
+    ../../modules/config/tools/terminal/nvim/default.nix
+    ../../modules/config/tools/terminal/kitty/default.nix
+    ../../modules/config/tools/development/git.nix
   ];
 
   system.stateVersion = "23.05"; # NAO MUDAR!
-  home.stateVersion = "24.11"; 
 
-  #tools = {
-    #development.git.enable = true;
-    #terminal = {
-      #terminal.enable = true;
-      #kitty.enable = true;
-      #nvim.enable = true;
-      #zsh.enable = true; 
-    #};
-  #};
-  #programs.zsh.enable = true;
-   
-
-  #hardware = {
-    #keyboard.br-abnt2.enable = true;
-    #printer = {
-      #enable = true;
-      #deskjet.enable = true; # Assumindo que você quer a impressora deskjet
-    #};
-    #scanner.enable = false;
-    # CORRIGIDO: Usando o módulo de gráficos Intel que criamos
-    #screen.enable = true;
-  #};
-
-  #systems = {
-    #audio.pipewire.enable = true;
-    #bluetooth.enable = true;
-    #boot = {
-      # CORRIGIDO: Caminho completo da opção e valor
-      #efi.mount-point = "/boot";
-      
-      # CORRIGIDO: Escolhendo apenas UM bootloader
-      #grub.enable = true;
-      #enable = false; # Desativa o módulo do systemd-boot
-    #};
-    #desktop = {
-      #autologin.enable = false;
-      #hyprland.enable = false;
-      #plasma6.enable = false;
-      #rofi.enable = true;
-      #services-user = {
-        #cliphist.enable = true;
-        #dunst.enable = true;
-        #wlsunset.enable = true;
-      #};
-      #sway.enable = true;
-      #waybar.enable = true;
-    #};
-    #font.nerd-font.enable = true;
-    #kernel.zen.enable = true;
-    #localization.brazil.enable = true;
-    #network = {
-      #enable = true; # CORRIGIDO: 'default' -> 'main'
-      #vpn.enable = true;
-      # Configuração do firewall (exemplo)
-      #firewall = {
-        #enable = true;
-        #tcp-ports = [ 8080 ]; # Apenas um exemplo, configure como quiser
-      #};
-    #};
-    #nix = {
-      #trust.all = false;
-      #github-api-path = config.age.secrets.github-api.path;
-    #};
-    #power = {
-      #sleep.disable = true;
-      #management.enable = true;
-    #};
-    #services = {
-      #docker.enable = true;
-      #packages = {
-        # CORRIGIDO: Caminho da opção de overlays
-        #overlays.enable = true; 
-        #browser = {
-          #zenbrowser.enable = true;
-        #};
-      #};
-    #};
-  #};
-
+# Configurações do Home Manager integradas ao NixOS
   home-manager = {
-    # Configurações globais da integração
     useGlobalPkgs = true;
     useUserPackages = true;
 
-    # A linha mais importante de todas:
-    # Diz ao NixOS para usar o arquivo 'home.nix' para configurar o usuário 'jade'
-    #users.jade = import ../../../home/systems/users/default.nix;
-    #users.jade = import ../../modules/config/systems/bluetooth/default.nix;
-  }; 
+    # Define o usuário e importa as configurações do home.nix
+    users.jade = import ../../home/jade/home.nix;
+  };
+
 }

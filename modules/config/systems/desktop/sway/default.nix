@@ -12,12 +12,7 @@ in
 {
   options = {
     systems.desktop.sway = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = "Enables the Sway desktop environment."; # Descrição um pouco mais clara
-      };
-      # A opção 'open' foi removida
+      enable = mkEnableOption "Enables the Sway desktop environment.";
     };
   };
 

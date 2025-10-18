@@ -12,13 +12,7 @@ in
 {
   options = {
     systems.boot.grub = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables GRUB 
-        '';
-      };
+      enable = mkEnableOption "Grub module";
     };
   };
 

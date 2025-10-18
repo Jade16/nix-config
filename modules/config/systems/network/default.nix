@@ -7,33 +7,24 @@
 
 with lib;
 let
-  cfg = config.systems.network.default;
+  cfg = config.systems.network;
 in
 {
- options = {
+  options = {
     systems.network = {
-      enable = mkOption {
-        type = types.bool;
-        default = false; # Desligado por padrão
-        description = "Enables network module (hostname, networkmanager).";
+      enable = mkEnableOption "network module";
+    };
+    firewall = {
+      enable = mkEnableOption "Enables firewall";
+      tcp-ports = mkOption {
+        type = types.listOf types.port;
+        default = [];
+        description = "List of allowed TCP ports.";
       };
-
-      firewall = {
-        enable = mkOption {
-          type = types.bool;
-          default = false; # Desligado por padrão
-          description = "Enables firewall.";
-        };
-        tcp-ports = mkOption {
-          type = types.listOf types.port;
-          default = []; # Lista vazia por padrão
-          description = "List of allowed TCP ports.";
-        };
-        udp-ports = mkOption {
-          type = types.listOf types.port;
-          default = []; # Lista vazia por padrão
-          description = "List of allowed UDP ports.";
-        };
+      udp-ports = mkOption {
+        type = types.listOf types.port;
+        default = []; 
+        description = "List of allowed UDP ports.";
       };
     };
   }; 

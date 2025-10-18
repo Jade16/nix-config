@@ -7,11 +7,7 @@ let
 in
 {
   options.systems.desktop.autologin = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enables autologin using greetd.";
-    };
+    enable = mkEnableOption "Enables autologin using greetd.";
     user = mkOption {         # <--- Nova opção para o nome de usuário
       type = types.str;
       default = "jade";        # <--- O padrão continua sendo "jade"

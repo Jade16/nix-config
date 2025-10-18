@@ -7,13 +7,7 @@ in
 {
   options = {
     systems.desktop.plasma6 = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables plasma6 
-        '';
-      };
+      enable = mkEnableOption "Enables plasma6";
     };
   };
 

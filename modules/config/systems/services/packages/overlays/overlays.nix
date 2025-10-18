@@ -1,17 +1,6 @@
 { lib, config, inputs, pkgs, ... }:
 
-with lib;
-let
-  cfg = config.systems.services.packages.overlays;
-in
 {
-  options.systems.services.packages.overlays.enable = mkOption {
-    type = types.bool;
-    default = false;
-    description = "Enable custom overlays and Nixpkgs configurations.";
-  };
-
-  config = mkIf cfg.enable {
 
     nixpkgs.overlays = [
       (final: prev: {
@@ -30,6 +19,5 @@ in
       permittedInsecurePackages = [ "oraclejdk-8u281" ];
       cudaSupport = true;
     };
-  };
 }
 

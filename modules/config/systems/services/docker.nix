@@ -12,13 +12,7 @@ in
 {
   options = {
     systems.services.docker = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables docker 
-        '';
-      };
+      enable = mkEnableOption "Enables docker";
     };
   };
 

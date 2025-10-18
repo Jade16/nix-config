@@ -12,13 +12,8 @@ in
 {
   options = {
     systems.localization.brazil = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables Localization for Brazil 
-        '';
-      };
+      enable = mkEnableOption
+          "Enables Localization for Brazil";
     };
   };
 
