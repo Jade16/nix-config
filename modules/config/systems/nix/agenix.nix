@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-with lib;
 {
   #age.identityPaths = [ "/home/locochoco/.ssh/id_ed25519" ];
   #age.secrets.github-api = {

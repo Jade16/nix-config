@@ -5,17 +5,7 @@
   ...
 }:
 
-with lib;
-let
-  cfg = config.systems.power.management;
-in
-{
-  options = {
-    systems.power.management = {
-      enable = mkEnableOption "Enables Power Management";
-    };
-  };
-
+{  
   config = mkIf cfg.enable {
     services.tlp = {
       enable = true;

@@ -4,17 +4,7 @@
   pkgs,
   ...
 }:
-
-with lib;
-let
-  cfg = config.systems.boot;
-in
 {
-  options = {
-    systems.boot = {
-      enable = mkEnableOption "Boot module";
-    };
-  };
 
   config = mkIf cfg.enable {
     boot = {

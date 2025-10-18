@@ -5,16 +5,7 @@
   ...
 }:
 
-  with lib;
-  let
-    cfg = config.systems.audio.pipewire;
-  in
   {
-    options = {
-      systems.audio.pipewire = {
-        enable = mkEnableOption "Audio module"; 
-      };
-    };
 
     config = mkIf cfg.enable {
       services = {

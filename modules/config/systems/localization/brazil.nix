@@ -4,19 +4,7 @@
   pkgs,
   ...
 }:
-
-with lib;
-let
-  cfg = config.systems.localization.brazil;
-in
 {
-  options = {
-    systems.localization.brazil = {
-      enable = mkEnableOption
-          "Enables Localization for Brazil";
-    };
-  };
-
   config = mkIf cfg.enable {
     time.timeZone = "America/Sao_Paulo";
     time.hardwareClockInLocalTime = true; 

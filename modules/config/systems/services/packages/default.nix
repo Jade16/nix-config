@@ -1,9 +1,6 @@
-# modules/config/system/packages.nix
-
 { pkgs, ... }:
 
 {
-  # Pacotes instalados para todo o sistema
   environment.systemPackages = with pkgs; [
     # Ferramentas de Boot
     os-prober

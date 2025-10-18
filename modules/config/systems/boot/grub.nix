@@ -5,16 +5,7 @@
   ...
 }:
 
-with lib;
-let
-  cfg = config.systems.boot.grub;
-in
 {
-  options = {
-    systems.boot.grub = {
-      enable = mkEnableOption "Grub module";
-    };
-  };
 
   config = mkIf cfg.enable {
     boot.loader = {

@@ -1,15 +1,8 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-let
-  cfg = config.systems.desktop.plasma6;
-in
+
 {
-  options = {
-    systems.desktop.plasma6 = {
-      enable = mkEnableOption "Enables plasma6";
-    };
-  };
+
 
   config = mkIf cfg.enable {
     services.desktopManager.plasma6.enable = true;

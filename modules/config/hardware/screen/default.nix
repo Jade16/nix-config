@@ -4,23 +4,7 @@
   pkgs,
   ...
 }:
-
-with lib;
-let
-  cfg = config.hardware.screen;
-in
 {
-  options = {
-    hardware.screen = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables Intel graphics  
-        '';
-      };
-    };
-  };
 
   config = mkIf cfg.enable {
     # Hardware settings

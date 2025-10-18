@@ -4,23 +4,7 @@
   pkgs,
   ...
 }:
-
-with lib;
-let
-  cfg = config.hardware.printer.deskjet;
-in
 {
-  options = {
-    hardware.printer.deskjet = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables DeskJet Printers 
-        '';
-      };
-    };
-  };
 
   config = mkIf cfg.enable {
     services.printing.drivers = [ pkgs.hplip ];

@@ -15,10 +15,8 @@
     ../../modules/config/systems/bluetooth/default.nix
     ../../modules/config/systems/boot/default.nix
     ../../modules/config/systems/boot/efi.nix
-    ../../modules/config/systems/boot/grub.nix 
-    ../../modules/config/systems/desktop/services-user/dunst/default.nix
+    ../../modules/config/systems/boot/grub.nix  
     ../../modules/config/systems/desktop/services-user/cliphist/default.nix
-    ../../modules/config/systems/desktop/services-user/wlsunset/default.nix
     ../../modules/config/systems/desktop/sway/default.nix
     ../../modules/config/systems/desktop/waybar/default.nix
     ../../modules/config/systems/font/nerd-font.nix
@@ -38,10 +36,6 @@
 
     # --- Tools ---
     ../../modules/config/tools/terminal/default.nix
-    ../../modules/config/tools/terminal/zsh/default.nix
-    ../../modules/config/tools/terminal/nvim/default.nix
-    ../../modules/config/tools/terminal/kitty/default.nix
-    ../../modules/config/tools/development/git.nix
   ];
 
   system.stateVersion = "23.05"; # NAO MUDAR!

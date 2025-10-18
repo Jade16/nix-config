@@ -5,16 +5,7 @@
   ...
 }:
 
-with lib;
-let
-  cfg = config.systems.services.docker;
-in
 {
-  options = {
-    systems.services.docker = {
-      enable = mkEnableOption "Enables docker";
-    };
-  };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [

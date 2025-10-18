@@ -4,31 +4,7 @@
   pkgs,
   ...
 }:
-
-with lib;
-let
-  cfg = config.systems.network;
-in
 {
-  options = {
-    systems.network = {
-      enable = mkEnableOption "network module";
-    };
-    firewall = {
-      enable = mkEnableOption "Enables firewall";
-      tcp-ports = mkOption {
-        type = types.listOf types.port;
-        default = [];
-        description = "List of allowed TCP ports.";
-      };
-      udp-ports = mkOption {
-        type = types.listOf types.port;
-        default = []; 
-        description = "List of allowed UDP ports.";
-      };
-    };
-  }; 
-
   config = mkIf cfg.enable {
     networking = {
       hostName = "jade-nixos";

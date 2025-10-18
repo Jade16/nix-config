@@ -6,25 +6,7 @@
   ...
 }:
 
-with lib;
-let
-  cfg = config.systems.gpu.nvidia;
-in
 {
-  options = {
-    systems.gpu.nvidia = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = "Enables nvidia drivers";
-      };
-      open = mkOption {
-        default = true;
-        type = types.bool;
-        description = "Makes it use the open source drivers";
-      };
-    };
-  };
 
   config = mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];

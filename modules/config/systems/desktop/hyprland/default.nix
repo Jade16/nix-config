@@ -2,10 +2,7 @@
 
 { config, lib, pkgs, ... }:
 
-with lib;
-let
-  cfg = config.systems.desktop.hyprland;
-in
+
 {
   # Este módulo depende dos módulos de rofi, dunst e waybar,
   # então ele os importa e os ativa quando ele mesmo é ativado.
@@ -15,12 +12,6 @@ in
     ../waybar/default.nix
   ];
 
-  options = {
-    systems.desktop.hyprland = {
-      enable = mkEnableOption "Enables the Hyprland desktop environment.";
-      
-    };
-  };
 
   config = mkIf cfg.enable {
     # Habilita o Hyprland no sistema para que ele apareça como uma sessão

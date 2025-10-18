@@ -6,9 +6,7 @@
 }:
 
 with lib;
-let
-  cfg = config.systems.gpu.nvidia-prime;
-in
+
 {
   imports = [ ./nvidia.nix ];
   options = {
