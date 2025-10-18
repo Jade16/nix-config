@@ -1,4 +1,4 @@
-{
+{ ... }: {
 imports = [
   ### Systems
   #./home/systems/default/hyprland.default.nix 

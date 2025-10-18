@@ -7,22 +7,30 @@
 
 with lib;
 let
-  cfg = config.systems.bluetooth;
+  cfg = config.bluetooth;
 in
 {
+  #options = {
+    #systems.bluetooth = {
+      #enable = mkOption {
+        #default = false;
+        #type = types.bool;
+        #description = ''
+          #Enables bluetooth
+        #'';
+      #};
+    #};
+  
   options = {
-    systems.bluetooth = {
-      enable = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enables bluetooth
-        '';
-      };
+    bluetooth = {
+      enable = lib.mkEnableOption ''
+        Enables bluetooth
+      '';
     };
   };
 
-  config = mkIf cfg.enable {
+
+  config = lib.mkIf cfg.enable {
     hardware = {
       bluetooth = {
         powerOnBoot = true;
