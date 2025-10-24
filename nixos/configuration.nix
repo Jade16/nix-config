@@ -189,6 +189,11 @@
     enable = true;
     enableOnBoot = true;
   };
+  systemd.services.docker.environment = {
+    HTTP_PROXY = "http://webproxy.ext.ti.com:80";
+    HTTPS_PROXY = "http://webproxy.ext.ti.com:80";
+    NO_PROXY = "localhost,127.0.0.1";
+  }; 
   # Additional system packages
   environment.systemPackages = with pkgs; [
     zsh
