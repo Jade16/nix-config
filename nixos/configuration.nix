@@ -20,42 +20,26 @@
     #./driver-configuration.nix
   ];
 
-  # Boot
-  boot.kernelParams = [
-    "pci=nommconf"    # Resolve conflitos de configuração de memória PCI
-    "pcie_aspm=off"   # Desativa ASPM se houver instabilidades
-    "nvme_core.default_ps_max_latency_us=0"  # Otimiza performance NVMe
-  ]; 
-  boot = {
-    loader = {
-      systemd-boot = {
-      enable = true;
-    };
-    efi = { 
-      canTouchEfiVariables = true;
-      #efiSysMountPoint = "/boot/efi";
-    };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      devices = [ "nodev" ];
-      useOSProber = true;
-      version = 2;
-      efiInstallAsRemovable = false;
-      fsIdentifier = "uuid";
-      extraEntries = ''
-        menuentry "Reboot"{ reboot }
-        menuentry "Poweroff"{ halt }
-      '';
-      efiSysMountPoint = "/boot/efi";
-      canTouchEfiVariables = true; 
-      };
-    };
+  boot.loader = {
+    systemd-boot.enable = true;       
+    efi.canTouchEfiVariables = true; 
+    #systemd-boot.efiInstallAsRemovable = false;
+    #systemd-boot.canTouchEfiVariables = true;
+    #efi.efiSysMountPoint = "/boot/efi";  # partição EFI montada
   };
+
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/E7C5-5C30";  # substitua pelo UUID correto
     fsType = "vfat";
-  }; 
+  };
+
+  boot.kernelParams = [
+    "pci=nommconf"
+    "pcie_aspm=off"
+    "nvme_core.default_ps_max_latency_us=0"
+  ];
+
+   
 
   # Bluetooth
   hardware.bluetooth.powerOnBoot = true;
