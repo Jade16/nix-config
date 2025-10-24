@@ -128,7 +128,7 @@
       isNormalUser = true;
       home = "/home/jade";
       description = "jade";
-      extraGroups = ["networkmanager" "wheel" "video" "libvirtd" "wireshark"];
+      extraGroups = ["networkmanager" "wheel" "video" "libvirtd" "wireshark" "docker"];
       shell = pkgs.zsh;
     };
   }; 
@@ -185,8 +185,10 @@
     zsh.enable = true;    
   };
 
-  virtualisation.docker.enable = true;
-
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
   # Additional system packages
   environment.systemPackages = with pkgs; [
     zsh
