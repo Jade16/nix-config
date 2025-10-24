@@ -28,35 +28,34 @@
   ]; 
   boot = {
     loader = {
-      #timeout = 10;
       systemd-boot = {
-        enable = false;
-        #configurationLimit = 10;
-      };
-      efi = { 
-        canTouchEfiVariables = false;
-        efiSysMountPoint = "/boot/efi";
-      };
-      grub = {
-        enable = true;
-        configurationLimit = 5;
-        #copyKernels = true;
-        efiSupport = true;
-        devices = [ "nodev" ];
-        useOSProber = true;
-        efiInstallAsRemovable = true;
-        fsIdentifier = "uuid";
-        #theme = pkgs.stdenv.mkDerivation{
-          
-        #};
-        extraEntries = ''
+      enable = true;
+    };
+    efi = { 
+      canTouchEfiVariables = true;
+      #efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      enable = true;
+      efiSupport = true;
+      devices = [ "nodev" ];
+      useOSProber = true;
+      version = 2;
+      efiInstallAsRemovable = false;
+      fsIdentifier = "uuid";
+      extraEntries = ''
         menuentry "Reboot"{ reboot }
         menuentry "Poweroff"{ halt }
-        '';
-        #version = 2;
+      '';
+      efiSysMountPoint = "/boot/efi";
+      canTouchEfiVariables = true; 
       };
     };
   };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/E7C5-5C30";  # substitua pelo UUID correto
+    fsType = "vfat";
+  }; 
 
   # Bluetooth
   hardware.bluetooth.powerOnBoot = true;
