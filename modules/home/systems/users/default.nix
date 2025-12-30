@@ -6,6 +6,9 @@
     homeDirectory = "/home/jade";
     stateVersion = "25.05";
   };
+
+  home-manager.backupFileExtension = "backup";
+
   programs.home-manager.enable = true; 
 
   xdg.enable = true;
