@@ -29,7 +29,7 @@
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/E7C5-5C30";  # substitua pelo UUID correto
+    device = "/dev/disk/by-uuid/E7C5-5C30";
     fsType = "vfat";
   };
 
