@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 # configuracao e customizacao do Nix
 let
-  #cfg = config.systems.nix.trust; 
+  cfg = config.systems.nix; 
 in
 {
   options = {

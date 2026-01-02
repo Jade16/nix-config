@@ -20,7 +20,7 @@
 
     ../../modules/config/systems/font/nerd-font.nix
     #../../modules/config/systems/gpu/nvidia.nix
-    ../../modules/config/systems/kernel/zen.nix
+    #../../modules/config/systems/kernel/zen.nix
     ../../modules/config/systems/localization/brazil.nix
     ../../modules/config/systems/network/default.nix
     ../../modules/config/systems/nix/default.nix
