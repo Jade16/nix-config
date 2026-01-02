@@ -11,6 +11,7 @@
       "video"
       "libvirtd" 
       "wireshark"
+      "docker"
     ];
     shell = pkgs.zsh;
   };

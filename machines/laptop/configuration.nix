@@ -17,6 +17,7 @@
     #../../modules/config/systems/boot/efi.nix
     #../../modules/config/systems/boot/grub.nix 
     ../../modules/config/systems/desktop/hyprland/default.nix
+
     ../../modules/config/systems/font/nerd-font.nix
     #../../modules/config/systems/gpu/nvidia.nix
     ../../modules/config/systems/kernel/zen.nix
@@ -42,6 +43,8 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+
+    backupFileExtension = "backup"; 
 
     # Define o usuário e importa as configurações do home.nix
     users.jade = import ../../modules/home/systems/users/default.nix; 

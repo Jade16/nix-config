@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 # configuracao de rede
 {
-  config = {
-    networking.hostName = "jade-nixos";
-    networking.networkmanager.enable = true;
-    networking.firewall.enable = true;
-    networking.firewall.allowedTCPPorts = [ 22 80 443 ]; # suas portas
-    networking.firewall.allowedUDPPorts = [ 123 ];     
+  networking = { 
+    hostName = "jade-nixos";
+    networkmanager.enable = true;
+    firewall.enable = true;
+    #firewall.allowedTCPPorts = [ 22 80 443 ]; # suas portas
+    #firewall.allowedUDPPorts = [ 123 ];     
   };
 }
 
