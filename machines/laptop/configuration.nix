@@ -42,6 +42,11 @@
     # --- Tools ---
     #../../modules/config/tools/terminal/default.nix
   ];
+### Kernel Logs
+  services.rsyslog.enable = true;
+  
+  services.logrotate.enable = true;
+###
 
 ### User settings
   users.users = {
