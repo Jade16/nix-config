@@ -1,25 +1,20 @@
-{ config, pkgs, ... }:
-# arquivo principal do Home Manager 
-{  
+# Home manager settings
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+
+{
   imports = [
-    #../../systems/desktop/rofi/default.nix
-    #../../systems/desktop/dunst/default.nix
-    #../../systems/desktop/waybar/default.nix
-    #../../systems/desktop/hyprland/default.nix
-    #../../systems/desktop/services-user/cliphist/default.nix
-    #../../systems/desktop/services-user/wlsunset/default.nix
-    #../../systems/security/gpg.nix
-    ../../systems/services/packages/default.nix
-    #../../tools/development/git.nix
-    #../../tools/terminal/default.nix
-    #../../tools/terminal/kitty/default.nix
-    #../../tools/terminal/zsh/zsh.nix
+    ./home_packages.nix
   ];
 
   home = {
     username = "jade";
     homeDirectory = "/home/jade";
-    stateVersion = "23.05"; # NAO MUDAR!!!
   };
 
   home.sessionPath = ["$HOME/.local/bin"];
@@ -29,8 +24,6 @@
     GTK_THEME = "Adwaita:dark";
   };
 
-  programs.home-manager.enable = true;
-  
   # Clipboard manager - historico do ctrl c + d
   services.cliphist.enable = true;
 
@@ -61,14 +54,7 @@
   };
 
   # System diagostics
-  xdg.configFile."btop/themes/btop.theme".source = ./btop.theme;
-
-  #xdg.enable = true;
-
-  #xdg.configFile."hyprland.conf" = {
-    #source = inputs.self + "./modules/home/hyprland.conf";
-    #force = true;
-  #}; 
+  xdg.configFile."btop/themes/btop.theme".source = ../extra-configs/btop.theme;
 
   programs.btop = {
     enable = true;
@@ -78,8 +64,13 @@
     };
   };
 
+  # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+  # O QUE EH ISSO????
 
+  #home.file."/home/jade/.config/fontconfig/conf.d/10-hm-fonts.conf".source = ...;
+   
 
-  #home.file."/home/jade/.config/fontconfig/conf.d/10-hm-fonts.conf".source = ...;   
-  }
+  # NÃO MUDAR ISSO, NUNCA
+  home.stateVersion = "23.05";
+}

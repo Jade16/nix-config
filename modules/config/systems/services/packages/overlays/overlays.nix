@@ -15,7 +15,11 @@
     allowUnfreePredicate = pkg:
       let name = lib.getName (pkg // { name = ""; });
       in builtins.elem name [ "sqldeveloper" ];
-    permittedInsecurePackages = [ "oraclejdk-8u281" ];
+    permittedInsecurePackages = [ 
+      "oraclejdk-8u281"
+      "qtwebengine-5.15.19"
+    ];
+     
     cudaSupport = true;
   };
 }

@@ -6,7 +6,6 @@
   home.packages = with pkgs; [
     # Navegadores
     brave
-    # Descomente se quiser usar o zen-browser, que já está no seu flake
     # inputs.zen-browser.packages.${pkgs.system}.default
 
     # Google Drive
@@ -20,12 +19,12 @@
 
     # Mídia
     stremio
-    libsForQt5.okular
+    #libsForQt5.okular
     sioyek
     zotero
     inkscape-with-extensions
     gimp-with-plugins
-    libsForQt5.kdenlive
+    #kdenlive
 
     # SQL
     sqlcl
