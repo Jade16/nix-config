@@ -1,31 +1,24 @@
 {
-  description = "NixOS + Home Manager modular setup";
+  description = "Minha configuração NixOS com Flakes";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # Define a fonte dos pacotes (nixpkgs).
+    # 'nixos-unstable' é ótimo para desktop/Hyprland, mas use 'nixos-24.11' se preferir estabilidade.
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-    in {
-      nixosConfigurations."jade-nixos" = nixpkgs.lib.nixosSystem {
-        inherit system;
-
+  outputs = { self, nixpkgs, ... }: {
+    nixosConfigurations = {
+      # IMPORTANTE: Substitua 'nixos' abaixo pelo seu HOSTNAME real
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         modules = [
-          ./machines/laptop/configuration.nix
-          #./modules/modules.nix
-
-          # integração home-manager
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.jade = import ./modules/home/systems/users/default.nix;
-          }
+          ./configuration.nix
+          # O hardware-configuration já costuma ser importado dentro do configuration.nix,
+          # mas se não estiver, descomente a linha abaixo:
+          # ./hardware-configuration.nix
         ];
       };
     };
+  };
 }
-
