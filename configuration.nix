@@ -110,11 +110,24 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Habilitando o Docker 
+  virtualisation.docker.enable = true;
+
+  # (Opcional) Habilita o driver de armazenamento rootless para maior segurança
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
+  # Adiciona seu usuário ao grupo do Docker para rodar comandos sem 'sudo'
+  users.users.jade.extraGroups = [ "docker" ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    docker-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
