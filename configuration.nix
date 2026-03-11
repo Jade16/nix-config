@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
     ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -45,6 +47,23 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    # Modesetting é necessário para funcionamento correto com compositors
+    open = true;
+
+    # Configuração PRIME para laptop com GPU híbrida Intel + NVIDIA
+    prime = {
+      sync.enable = true; # Habilita a sincronização, essencial para evitar tearing
+
+      # Bus IDs das suas placas (COPIAR OS VALORES DO SEU lspci)
+      intelBusId = "PCI:0:2:0";    # Intel: 00:02.0
+      nvidiaBusId = "PCI:1:0:0";   # NVIDIA: 01:00.0
+    };
+    modesetting.enable = true;
+    nvidiaSettings = true;
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -90,7 +109,7 @@
   users.users.jade = {
     isNormalUser = true;
     description = "Jade";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -100,15 +119,20 @@
       wezterm
       alacritty
       git
-      #inputs.zen-browser.packages.${pkgs.system}.default
+      inputs.zen-browser.packages.${pkgs.system}.default 
     ];
   };
+
 
   # Install firefox.
   programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config.permittedInsecurePackages = [ # para instalar o stremio
+    "qtwebengine-5.15.19"
+  ];
 
   # Habilitando o Docker 
   virtualisation.docker.enable = true;
@@ -119,16 +143,21 @@
     setSocketVariable = true;
   };
 
-  # Adiciona seu usuário ao grupo do Docker para rodar comandos sem 'sudo'
-  users.users.jade.extraGroups = [ "docker" ];
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
     docker-compose
+    docker-buildx
+    net-tools
+    openssh
+    stremio
   ];
+    #++ [
+      #inputs.zen-browser.packages.${pkgs.system}.default 
+    #];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -141,7 +170,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
